@@ -11,8 +11,8 @@ pyttsx3==2.90
 PyAudio==0.2.14
 pydub==0.25.1
 
-# Translation
-googletrans==4.0.0rc1
+# Translation (replaced googletrans with deep-translator)
+deep-translator==1.11.4
 
 # Cloud Storage (Cloudinary)
 cloudinary==1.36.0
@@ -34,11 +34,11 @@ requests==2.31.0
 beautifulsoup4==4.12.2
 
 # Database
-sqlalchemy==2.0.23
+SQLAlchemy==2.0.23
 
 # Environment Variables
 python-dotenv==1.0.0
 
-# Other Utilities
+# Date & Time Utilities
 python-dateutil==2.8.2
 pytz==2023.3
