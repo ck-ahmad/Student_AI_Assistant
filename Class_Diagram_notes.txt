@@ -1,0 +1,42 @@
+2025-10-29 14:37:12 - ### **Class Diagrams: Visualizing OOP Structure**
+
+A Class Diagram is a visual representation of the structure of an Object-Oriented Programming (OOP) system. It shows the system's classes, their attributes, methods, and the relationships between them.
+
+---
+
+#### **Core Components of a Class**
+
+A class is represented by a rectangle divided into three compartments:
+
+1.  **Class Name:** The name of the class (e.g., `Student`).
+2.  **Attributes:** The data or properties of the class (e.g., `studentID`, `name`).
+3.  **Methods:** The operations or functions the class can perform (e.g., `register()`, `getGrades()`).
+
+**Access Modifiers (Visibility):**
+*   `+` Public
+*   `-` Private
+*   `#` Protected
+
+---
+
+#### **Key Relationships Between Classes**
+
+*   **Association:** A general relationship where one class uses or interacts with another ("uses-a").
+    *   *Example:* A `Professor` *teaches* a `Course`.
+*   **Inheritance (Generalization):** An "is-a" relationship where a subclass inherits from a superclass.
+    *   *Example:* A `Dog` *is an* `Animal`.
+*   **Aggregation:** A "has-a" relationship where a class is made up of other classes, but the parts can exist independently.
+    *   *Example:* A `Department` *has* `Professors`. (If the department closes, the professors still exist).
+*   **Composition:** A stronger "owns-a" relationship where the parts cannot exist without the whole.
+    *   *Example:* A `House` *is composed of* `Rooms`. (If the house is destroyed, the rooms are too).
+
+---
+
+#### **Multiplicity**
+
+Indicates how many instances of one class can be associated with one instance of another class.
+
+*   `1` : Exactly one
+*   `*` : Zero or more (many)
+*   `0..1` : Zero or one
+*   `1..*` : One or more

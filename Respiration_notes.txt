@@ -1,0 +1,25 @@
+2025-10-29 14:34:07 - ### **Cellular Respiration**
+
+Cellular respiration is the chemical process that releases energy from glucose (food) in living cells.
+
+*   **Purpose:** To produce ATP, the energy currency that powers all life activities.
+*   **Location:** Occurs in the mitochondria of cells.
+*   **Word Equation:**
+    Glucose + Oxygen → Carbon Dioxide + Water + Energy (ATP)
+
+#### **Two Main Types:**
+
+*   **Aerobic Respiration:**
+    *   Requires oxygen.
+    *   Releases a large amount of energy.
+    *   The primary method of respiration in most organisms.
+
+*   **Anaerobic Respiration:**
+    *   Occurs without oxygen.
+    *   Releases a much smaller amount of energy.
+    *   Example: Lactic acid production in muscles during intense exercise.
+
+**Key Distinction:**
+
+*   **Breathing (Gas Exchange):** The physical process of taking in oxygen and releasing carbon dioxide.
+*   **Respiration:** The chemical reaction inside cells that uses oxygen to break down food for energy.

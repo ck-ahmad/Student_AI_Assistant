@@ -1,0 +1,450 @@
+2025-10-27 05:36:24,882 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.100.13.147:5000
+2025-10-27 05:36:24,882 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-27 05:36:24,935 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 05:36:32,789 - WARNING -  * Debugger is active!
+2025-10-27 05:36:32,833 - INFO -  * Debugger PIN: 106-954-531
+2025-10-27 05:36:33,011 - INFO - 127.0.0.1 - - [27/Oct/2025 05:36:33] "GET / HTTP/1.1" 200 -
+2025-10-27 05:36:33,917 - INFO - 127.0.0.1 - - [27/Oct/2025 05:36:33] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-10-27 05:36:42,896 - INFO - 127.0.0.1 - - [27/Oct/2025 05:36:42] "GET /quiz HTTP/1.1" 200 -
+2025-10-27 05:37:02,877 - INFO - 127.0.0.1 - - [27/Oct/2025 05:37:02] "GET /notes HTTP/1.1" 200 -
+2025-10-27 05:38:40,289 - ERROR - AI enhancement error: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 05:38:40,294 - INFO - Note created for topic: Photosynthesis
+2025-10-27 05:38:40,296 - INFO - 127.0.0.1 - - [27/Oct/2025 05:38:40] "POST /api/notes/create HTTP/1.1" 200 -
+2025-10-27 05:38:40,392 - INFO - 127.0.0.1 - - [27/Oct/2025 05:38:40] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-27 05:38:46,932 - ERROR - Error summarizing notes: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 05:38:46,933 - INFO - 127.0.0.1 - - [27/Oct/2025 05:38:46] "POST /api/notes/summarize HTTP/1.1" 200 -
+2025-10-27 05:39:00,649 - INFO - 127.0.0.1 - - [27/Oct/2025 05:39:00] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-27 05:39:03,194 - INFO - 127.0.0.1 - - [27/Oct/2025 05:39:03] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-27 05:39:05,563 - ERROR - Error generating flashcards: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 05:39:05,564 - INFO - 127.0.0.1 - - [27/Oct/2025 05:39:05] "POST /api/notes/flashcards HTTP/1.1" 200 -
+2025-10-27 05:39:16,466 - ERROR - Error asking AI: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 05:39:16,467 - INFO - 127.0.0.1 - - [27/Oct/2025 05:39:16] "POST /api/notes/ask-ai HTTP/1.1" 200 -
+2025-10-27 05:39:35,909 - ERROR - Error asking AI: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 05:39:35,911 - INFO - 127.0.0.1 - - [27/Oct/2025 05:39:35] "POST /api/notes/ask-ai HTTP/1.1" 200 -
+2025-10-27 05:39:47,085 - INFO - 127.0.0.1 - - [27/Oct/2025 05:39:47] "GET / HTTP/1.1" 200 -
+2025-10-27 05:39:49,626 - INFO - 127.0.0.1 - - [27/Oct/2025 05:39:49] "GET /drive HTTP/1.1" 200 -
+2025-10-27 05:39:49,749 - INFO - 127.0.0.1 - - [27/Oct/2025 05:39:49] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 05:40:37,076 - ERROR - Error uploading file: Must supply api_key
+2025-10-27 05:40:37,081 - INFO - 127.0.0.1 - - [27/Oct/2025 05:40:37] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 05:40:40,911 - ERROR - Error uploading file: Must supply api_key
+2025-10-27 05:40:40,920 - INFO - 127.0.0.1 - - [27/Oct/2025 05:40:40] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 05:40:43,959 - INFO - File uploaded: Cormen_Algorithms_Slides_-_Algo.pdf for CS CS2005
+2025-10-27 05:40:43,969 - INFO - 127.0.0.1 - - [27/Oct/2025 05:40:43] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 05:41:10,976 - INFO - 127.0.0.1 - - [27/Oct/2025 05:41:10] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 05:41:14,973 - INFO - 127.0.0.1 - - [27/Oct/2025 05:41:14] "[33mGET /drive_files%05_CS_CS2005_Cormen_Algorithms_Slides_-_Algo.pdf HTTP/1.1[0m" 404 -
+2025-10-27 05:41:35,254 - INFO - 127.0.0.1 - - [27/Oct/2025 05:41:35] "POST /api/drive/predefined HTTP/1.1" 200 -
+2025-10-27 05:41:37,981 - INFO - 127.0.0.1 - - [27/Oct/2025 05:41:37] "POST /api/drive/predefined HTTP/1.1" 200 -
+2025-10-27 05:41:44,763 - INFO - 127.0.0.1 - - [27/Oct/2025 05:41:44] "POST /api/drive/predefined HTTP/1.1" 200 -
+2025-10-27 05:41:55,574 - INFO - 127.0.0.1 - - [27/Oct/2025 05:41:55] "GET / HTTP/1.1" 200 -
+2025-10-27 05:49:23,016 - INFO -  * Detected change in 'd:\\Python\\Development\\Frontend + Backend Projects(SuccessFuls)\\Personal Projects\\Student AI Assistant\\App.py', reloading
+2025-10-27 05:49:23,018 - INFO -  * Detected change in 'd:\\Python\\Development\\Frontend + Backend Projects(SuccessFuls)\\Personal Projects\\Student AI Assistant\\App.py', reloading
+2025-10-27 05:49:25,874 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 05:49:33,352 - WARNING -  * Debugger is active!
+2025-10-27 05:49:33,358 - INFO -  * Debugger PIN: 106-954-531
+2025-10-27 05:50:06,203 - INFO -  * Detected change in 'D:\\Python312\\Lib\\site-packages\\speech_recognition\\exceptions.py', reloading
+2025-10-27 05:50:06,307 - INFO -  * Detected change in 'D:\\Python312\\Lib\\site-packages\\speech_recognition\\audio.py', reloading
+2025-10-27 05:50:06,990 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 05:50:13,135 - WARNING -  * Debugger is active!
+2025-10-27 05:50:13,141 - INFO -  * Debugger PIN: 106-954-531
+2025-10-27 05:50:34,877 - INFO -  * Detected change in 'd:\\Python\\Development\\Frontend + Backend Projects(SuccessFuls)\\Personal Projects\\Student AI Assistant\\Parts\\Health_Tracker.py', reloading
+2025-10-27 05:50:34,912 - INFO -  * Detected change in 'd:\\Python\\Development\\Frontend + Backend Projects(SuccessFuls)\\Personal Projects\\Student AI Assistant\\Parts\\Health_Tracker.py', reloading
+2025-10-27 05:50:35,259 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 05:50:40,860 - WARNING -  * Debugger is active!
+2025-10-27 05:50:40,866 - INFO -  * Debugger PIN: 106-954-531
+2025-10-27 05:52:08,896 - INFO -  * Detected change in 'D:\\Python312\\Lib\\site-packages\\dotenv\\__init__.py', reloading
+2025-10-27 05:52:08,957 - INFO -  * Detected change in 'D:\\Python312\\Lib\\site-packages\\dotenv\\main.py', reloading
+2025-10-27 05:52:09,641 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 05:52:15,918 - WARNING -  * Debugger is active!
+2025-10-27 05:52:15,927 - INFO -  * Debugger PIN: 106-954-531
+2025-10-27 05:52:17,106 - INFO -  * Detected change in 'd:\\Python\\Development\\Frontend + Backend Projects(SuccessFuls)\\Personal Projects\\Student AI Assistant\\Parts\\Health_Tracker.py', reloading
+2025-10-27 05:52:17,139 - INFO -  * Detected change in 'd:\\Python\\Development\\Frontend + Backend Projects(SuccessFuls)\\Personal Projects\\Student AI Assistant\\Parts\\Health_Tracker.py', reloading
+2025-10-27 05:52:18,439 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 05:52:22,979 - WARNING -  * Debugger is active!
+2025-10-27 05:52:22,986 - INFO -  * Debugger PIN: 106-954-531
+2025-10-27 05:52:23,645 - INFO -  * Detected change in 'd:\\Python\\Development\\Frontend + Backend Projects(SuccessFuls)\\Personal Projects\\Student AI Assistant\\Parts\\Health_Tracker.py', reloading
+2025-10-27 05:52:23,648 - INFO -  * Detected change in 'd:\\Python\\Development\\Frontend + Backend Projects(SuccessFuls)\\Personal Projects\\Student AI Assistant\\Parts\\Health_Tracker.py', reloading
+2025-10-27 05:52:24,428 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 05:52:30,417 - WARNING -  * Debugger is active!
+2025-10-27 05:52:30,432 - INFO -  * Debugger PIN: 106-954-531
+2025-10-27 05:52:33,280 - INFO -  * Detected change in 'd:\\Python\\Development\\Frontend + Backend Projects(SuccessFuls)\\Personal Projects\\Student AI Assistant\\Parts\\Health_Tracker.py', reloading
+2025-10-27 05:52:33,283 - INFO -  * Detected change in 'd:\\Python\\Development\\Frontend + Backend Projects(SuccessFuls)\\Personal Projects\\Student AI Assistant\\Parts\\Health_Tracker.py', reloading
+2025-10-27 05:52:34,234 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 05:52:40,726 - WARNING -  * Debugger is active!
+2025-10-27 05:52:40,737 - INFO -  * Debugger PIN: 106-954-531
+2025-10-27 05:52:46,170 - INFO -  * Detected change in 'd:\\Python\\Development\\Frontend + Backend Projects(SuccessFuls)\\Personal Projects\\Student AI Assistant\\Parts\\Health_Tracker.py', reloading
+2025-10-27 05:52:46,202 - INFO -  * Detected change in 'd:\\Python\\Development\\Frontend + Backend Projects(SuccessFuls)\\Personal Projects\\Student AI Assistant\\Parts\\Health_Tracker.py', reloading
+2025-10-27 05:52:47,487 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 05:56:02,443 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.100.13.147:5000
+2025-10-27 05:56:02,444 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-27 05:56:02,494 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 05:56:10,528 - WARNING -  * Debugger is active!
+2025-10-27 05:56:10,538 - INFO -  * Debugger PIN: 106-954-531
+2025-10-27 05:56:10,631 - INFO - 127.0.0.1 - - [27/Oct/2025 05:56:10] "GET / HTTP/1.1" 200 -
+2025-10-27 05:56:12,491 - INFO - 127.0.0.1 - - [27/Oct/2025 05:56:12] "GET /notes HTTP/1.1" 200 -
+2025-10-27 05:57:17,626 - INFO - 127.0.0.1 - - [27/Oct/2025 05:57:17] "POST /api/notes/ask-ai HTTP/1.1" 200 -
+2025-10-27 05:57:22,324 - INFO - 127.0.0.1 - - [27/Oct/2025 05:57:22] "POST /api/notes/summarize HTTP/1.1" 200 -
+2025-10-27 05:57:26,718 - INFO - 127.0.0.1 - - [27/Oct/2025 05:57:26] "POST /api/notes/summarize HTTP/1.1" 200 -
+2025-10-27 05:57:28,626 - INFO - 127.0.0.1 - - [27/Oct/2025 05:57:28] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-27 05:57:33,860 - ERROR - AI enhancement error: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 05:57:33,867 - INFO - Note created for topic: Osmosis
+2025-10-27 05:57:33,868 - INFO - 127.0.0.1 - - [27/Oct/2025 05:57:33] "POST /api/notes/create HTTP/1.1" 200 -
+2025-10-27 05:57:33,920 - INFO - 127.0.0.1 - - [27/Oct/2025 05:57:33] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-27 05:57:37,349 - ERROR - Error summarizing notes: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 05:57:37,350 - INFO - 127.0.0.1 - - [27/Oct/2025 05:57:37] "POST /api/notes/summarize HTTP/1.1" 200 -
+2025-10-27 05:57:39,569 - ERROR - Error generating flashcards: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 05:57:39,571 - INFO - 127.0.0.1 - - [27/Oct/2025 05:57:39] "POST /api/notes/flashcards HTTP/1.1" 200 -
+2025-10-27 05:57:49,488 - ERROR - Error summarizing notes: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 05:57:49,489 - INFO - 127.0.0.1 - - [27/Oct/2025 05:57:49] "POST /api/notes/summarize HTTP/1.1" 200 -
+2025-10-27 05:57:51,346 - ERROR - Error generating flashcards: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 05:57:51,347 - INFO - 127.0.0.1 - - [27/Oct/2025 05:57:51] "POST /api/notes/flashcards HTTP/1.1" 200 -
+2025-10-27 05:58:00,158 - INFO - 127.0.0.1 - - [27/Oct/2025 05:58:00] "GET / HTTP/1.1" 200 -
+2025-10-27 05:58:01,907 - INFO - 127.0.0.1 - - [27/Oct/2025 05:58:01] "GET /drive HTTP/1.1" 200 -
+2025-10-27 05:58:02,186 - INFO - 127.0.0.1 - - [27/Oct/2025 05:58:02] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 06:04:49,318 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.100.13.147:5000
+2025-10-27 06:04:49,318 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-27 06:04:49,341 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 06:04:56,830 - WARNING -  * Debugger is active!
+2025-10-27 06:04:56,853 - INFO -  * Debugger PIN: 106-954-531
+2025-10-27 06:04:57,023 - INFO - 127.0.0.1 - - [27/Oct/2025 06:04:57] "GET / HTTP/1.1" 200 -
+2025-10-27 06:05:00,729 - INFO - 127.0.0.1 - - [27/Oct/2025 06:05:00] "GET /notes HTTP/1.1" 200 -
+2025-10-27 06:05:40,682 - ERROR - AI enhancement error: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 06:05:40,689 - INFO - Note created for topic: Respiration
+2025-10-27 06:05:40,690 - INFO - 127.0.0.1 - - [27/Oct/2025 06:05:40] "POST /api/notes/create HTTP/1.1" 200 -
+2025-10-27 06:05:41,055 - INFO - 127.0.0.1 - - [27/Oct/2025 06:05:41] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-27 06:05:56,026 - ERROR - Error asking AI: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 06:05:56,027 - INFO - 127.0.0.1 - - [27/Oct/2025 06:05:56] "POST /api/notes/ask-ai HTTP/1.1" 200 -
+2025-10-27 06:06:06,284 - ERROR - Error summarizing notes: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 06:06:06,286 - INFO - 127.0.0.1 - - [27/Oct/2025 06:06:06] "POST /api/notes/summarize HTTP/1.1" 200 -
+2025-10-27 06:06:10,711 - INFO - Note 1 deleted from topic: Respiration
+2025-10-27 06:06:10,713 - INFO - 127.0.0.1 - - [27/Oct/2025 06:06:10] "POST /api/notes/delete HTTP/1.1" 200 -
+2025-10-27 06:06:11,031 - INFO - 127.0.0.1 - - [27/Oct/2025 06:06:11] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-27 06:06:14,505 - INFO - 127.0.0.1 - - [27/Oct/2025 06:06:14] "GET / HTTP/1.1" 200 -
+2025-10-27 06:06:16,460 - INFO - 127.0.0.1 - - [27/Oct/2025 06:06:16] "GET /drive HTTP/1.1" 200 -
+2025-10-27 06:06:16,753 - INFO - 127.0.0.1 - - [27/Oct/2025 06:06:16] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 06:07:01,909 - ERROR - Error uploading file: public_id (student_ai/5/CS/Design & Algo/Cormen_Algorithms_Slides_-_Algo) is invalid
+2025-10-27 06:07:01,924 - INFO - 127.0.0.1 - - [27/Oct/2025 06:07:01] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 06:07:02,562 - WARNING - Connection pool is full, discarding connection: api.cloudinary.com. Connection pool size: 1
+2025-10-27 06:07:02,565 - ERROR - Error uploading file: public_id (student_ai/5/CS/Design & Algo/Cormen_Algorithms_Slides_-_Algo) is invalid
+2025-10-27 06:07:02,578 - INFO - 127.0.0.1 - - [27/Oct/2025 06:07:02] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 06:07:12,637 - WARNING - Connection pool is full, discarding connection: api.cloudinary.com. Connection pool size: 1
+2025-10-27 06:07:12,640 - ERROR - Error uploading file: public_id (student_ai/5/CS/Design & Algo/Cormen_Algorithms_Slides_-_Algo) is invalid
+2025-10-27 06:07:12,650 - INFO - 127.0.0.1 - - [27/Oct/2025 06:07:12] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 06:11:25,179 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.100.13.147:5000
+2025-10-27 06:11:25,179 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-27 06:11:25,219 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 06:11:29,820 - WARNING -  * Debugger is active!
+2025-10-27 06:11:29,830 - INFO -  * Debugger PIN: 106-954-531
+2025-10-27 06:11:33,688 - INFO - 127.0.0.1 - - [27/Oct/2025 06:11:33] "GET / HTTP/1.1" 200 -
+2025-10-27 06:11:35,982 - INFO - 127.0.0.1 - - [27/Oct/2025 06:11:35] "GET /search HTTP/1.1" 200 -
+2025-10-27 06:11:36,046 - INFO - 127.0.0.1 - - [27/Oct/2025 06:11:36] "POST /api/todo/manage HTTP/1.1" 200 -
+2025-10-27 06:11:45,669 - INFO - Web search: Photosynthesis on google/search
+2025-10-27 06:11:45,671 - INFO - 127.0.0.1 - - [27/Oct/2025 06:11:45] "POST /api/search/web HTTP/1.1" 200 -
+2025-10-27 06:11:56,162 - INFO - Web search: Photosynthesis on google/scholar
+2025-10-27 06:11:56,164 - INFO - 127.0.0.1 - - [27/Oct/2025 06:11:56] "POST /api/search/web HTTP/1.1" 200 -
+2025-10-27 06:12:10,042 - ERROR - Error getting suggestions: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 06:12:10,043 - INFO - 127.0.0.1 - - [27/Oct/2025 06:12:10] "POST /api/search/suggestions HTTP/1.1" 200 -
+2025-10-27 06:12:10,488 - ERROR - Error getting suggestions: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 06:12:10,489 - INFO - 127.0.0.1 - - [27/Oct/2025 06:12:10] "POST /api/search/suggestions HTTP/1.1" 200 -
+2025-10-27 06:12:15,859 - INFO - Web search: Photosynthesis on google/scholar
+2025-10-27 06:12:15,860 - INFO - 127.0.0.1 - - [27/Oct/2025 06:12:15] "POST /api/search/web HTTP/1.1" 200 -
+2025-10-27 06:12:20,945 - INFO - 127.0.0.1 - - [27/Oct/2025 06:12:20] "GET / HTTP/1.1" 200 -
+2025-10-27 06:12:23,820 - INFO - 127.0.0.1 - - [27/Oct/2025 06:12:23] "GET /health HTTP/1.1" 200 -
+2025-10-27 06:12:52,198 - ERROR - Error analyzing symptoms: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 06:12:52,199 - INFO - 127.0.0.1 - - [27/Oct/2025 06:12:52] "POST /api/health/analyze HTTP/1.1" 200 -
+2025-10-27 06:13:05,653 - ERROR - Error searching medical info: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 06:13:05,654 - INFO - 127.0.0.1 - - [27/Oct/2025 06:13:05] "POST /api/health/search HTTP/1.1" 200 -
+2025-10-27 06:13:13,807 - ERROR - Error getting wellness tips: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 06:13:13,807 - INFO - 127.0.0.1 - - [27/Oct/2025 06:13:13] "POST /api/health/wellness HTTP/1.1" 200 -
+2025-10-27 06:13:17,460 - INFO - 127.0.0.1 - - [27/Oct/2025 06:13:17] "GET / HTTP/1.1" 200 -
+2025-10-27 06:13:20,232 - INFO - 127.0.0.1 - - [27/Oct/2025 06:13:20] "GET /quiz HTTP/1.1" 200 -
+2025-10-27 06:13:24,260 - INFO - 127.0.0.1 - - [27/Oct/2025 06:13:24] "GET / HTTP/1.1" 200 -
+
+2025-10-27 09:23:37,977 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.100.10.170:5000
+2025-10-27 09:23:37,977 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-27 09:23:38,024 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 09:23:43,476 - WARNING -  * Debugger is active!
+2025-10-27 09:23:43,483 - INFO -  * Debugger PIN: 106-954-531
+2025-10-27 09:51:22,361 - INFO - 127.0.0.1 - - [27/Oct/2025 09:51:22] "GET / HTTP/1.1" 200 -
+2025-10-27 09:51:22,849 - INFO - 127.0.0.1 - - [27/Oct/2025 09:51:22] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-10-27 09:51:24,996 - INFO - 127.0.0.1 - - [27/Oct/2025 09:51:24] "GET /notes HTTP/1.1" 200 -
+2025-10-27 09:52:10,603 - ERROR - AI enhancement error: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 09:52:10,605 - INFO - Note created for topic: Respiration
+2025-10-27 09:52:10,607 - INFO - 127.0.0.1 - - [27/Oct/2025 09:52:10] "POST /api/notes/create HTTP/1.1" 200 -
+2025-10-27 09:52:10,968 - INFO - 127.0.0.1 - - [27/Oct/2025 09:52:10] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-27 09:52:23,204 - ERROR - Error asking AI: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 09:52:23,205 - INFO - 127.0.0.1 - - [27/Oct/2025 09:52:23] "POST /api/notes/ask-ai HTTP/1.1" 200 -
+2025-10-27 09:52:31,528 - ERROR - Error generating flashcards: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 09:52:31,529 - INFO - 127.0.0.1 - - [27/Oct/2025 09:52:31] "POST /api/notes/flashcards HTTP/1.1" 200 -
+2025-10-27 09:52:34,426 - ERROR - Error summarizing notes: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 09:52:34,427 - INFO - 127.0.0.1 - - [27/Oct/2025 09:52:34] "POST /api/notes/summarize HTTP/1.1" 200 -
+2025-10-27 09:52:39,876 - INFO -  * Detected change in 'D:\\Python312\\Lib\\site-packages\\flask\\json\\__init__.py', reloading
+2025-10-27 09:52:39,881 - INFO -  * Detected change in 'D:\\Python312\\Lib\\site-packages\\werkzeug\\wrappers\\response.py', reloading
+2025-10-27 09:52:43,408 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 09:52:50,526 - WARNING -  * Debugger is active!
+2025-10-27 09:52:50,537 - INFO -  * Debugger PIN: 106-954-531
+2025-10-27 09:53:07,954 - INFO - 127.0.0.1 - - [27/Oct/2025 09:53:07] "GET / HTTP/1.1" 200 -
+2025-10-27 09:53:10,648 - INFO - 127.0.0.1 - - [27/Oct/2025 09:53:10] "GET /notes HTTP/1.1" 200 -
+2025-10-27 09:53:38,673 - INFO - 127.0.0.1 - - [27/Oct/2025 09:53:38] "POST /api/notes/search HTTP/1.1" 200 -
+2025-10-27 09:53:51,735 - ERROR - Error asking AI: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 09:53:51,738 - INFO - 127.0.0.1 - - [27/Oct/2025 09:53:51] "POST /api/notes/ask-ai HTTP/1.1" 200 -
+2025-10-27 09:54:18,174 - INFO - 127.0.0.1 - - [27/Oct/2025 09:54:18] "GET / HTTP/1.1" 200 -
+2025-10-27 09:54:21,725 - INFO - 127.0.0.1 - - [27/Oct/2025 09:54:21] "GET /drive HTTP/1.1" 200 -
+2025-10-27 09:54:21,789 - INFO - 127.0.0.1 - - [27/Oct/2025 09:54:21] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 09:55:30,985 - ERROR - Error uploading file: public_id (student_ai/5/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-27 09:55:30,997 - INFO - 127.0.0.1 - - [27/Oct/2025 09:55:30] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 09:55:40,376 - WARNING - Connection pool is full, discarding connection: api.cloudinary.com. Connection pool size: 1
+2025-10-27 09:55:40,378 - ERROR - Error uploading file: public_id (student_ai/5/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-27 09:55:40,388 - INFO - 127.0.0.1 - - [27/Oct/2025 09:55:40] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 09:56:09,923 - ERROR - Error uploading file: public_id (student_ai/5/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-27 09:56:09,935 - INFO - 127.0.0.1 - - [27/Oct/2025 09:56:09] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 09:57:29,790 - ERROR - Error uploading file: public_id (student_ai/5/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-27 09:57:29,803 - INFO - 127.0.0.1 - - [27/Oct/2025 09:57:29] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 09:57:37,743 - ERROR - Error uploading file: public_id (student_ai/5/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-27 09:57:37,749 - INFO - 127.0.0.1 - - [27/Oct/2025 09:57:37] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 09:57:42,611 - ERROR - Error uploading file: public_id (student_ai/5/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-27 09:57:42,621 - INFO - 127.0.0.1 - - [27/Oct/2025 09:57:42] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 09:57:42,961 - WARNING - Connection pool is full, discarding connection: api.cloudinary.com. Connection pool size: 1
+2025-10-27 09:57:42,963 - ERROR - Error uploading file: public_id (student_ai/5/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-27 09:57:42,975 - INFO - 127.0.0.1 - - [27/Oct/2025 09:57:42] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 09:57:49,304 - ERROR - Error uploading file: public_id (student_ai/5/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-27 09:57:49,313 - INFO - 127.0.0.1 - - [27/Oct/2025 09:57:49] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 09:57:56,469 - ERROR - Error uploading file: public_id (student_ai/5/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-27 09:57:56,482 - INFO - 127.0.0.1 - - [27/Oct/2025 09:57:56] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 09:57:56,808 - INFO - 127.0.0.1 - - [27/Oct/2025 09:57:56] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 09:57:57,132 - INFO - 127.0.0.1 - - [27/Oct/2025 09:57:57] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 09:57:57,458 - INFO - 127.0.0.1 - - [27/Oct/2025 09:57:57] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 09:57:57,774 - INFO - 127.0.0.1 - - [27/Oct/2025 09:57:57] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 09:57:58,097 - INFO - 127.0.0.1 - - [27/Oct/2025 09:57:58] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 09:57:58,410 - INFO - 127.0.0.1 - - [27/Oct/2025 09:57:58] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 09:57:58,723 - INFO - 127.0.0.1 - - [27/Oct/2025 09:57:58] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 09:57:59,036 - INFO - 127.0.0.1 - - [27/Oct/2025 09:57:59] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 09:57:59,358 - INFO - 127.0.0.1 - - [27/Oct/2025 09:57:59] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 09:57:59,674 - INFO - 127.0.0.1 - - [27/Oct/2025 09:57:59] "[33mGET /drive_files%05_CS_CS2005_Cormen_Algorithms_Slides_-_Algo.pdf HTTP/1.1[0m" 404 -
+2025-10-27 09:57:59,998 - INFO - 127.0.0.1 - - [27/Oct/2025 09:57:59] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 09:58:00,311 - INFO - 127.0.0.1 - - [27/Oct/2025 09:58:00] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 09:58:03,092 - WARNING - Connection pool is full, discarding connection: api.cloudinary.com. Connection pool size: 1
+2025-10-27 09:58:03,094 - ERROR - Error uploading file: public_id (student_ai/5/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-27 09:58:03,104 - INFO - 127.0.0.1 - - [27/Oct/2025 09:58:03] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 09:58:03,454 - WARNING - Connection pool is full, discarding connection: api.cloudinary.com. Connection pool size: 1
+2025-10-27 09:58:03,456 - ERROR - Error uploading file: public_id (student_ai/5/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-27 09:58:03,468 - INFO - 127.0.0.1 - - [27/Oct/2025 09:58:03] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 09:58:05,879 - INFO - 127.0.0.1 - - [27/Oct/2025 09:58:05] "GET / HTTP/1.1" 200 -
+2025-10-27 09:58:07,974 - INFO - 127.0.0.1 - - [27/Oct/2025 09:58:07] "GET /drive HTTP/1.1" 200 -
+2025-10-27 09:58:08,238 - INFO - 127.0.0.1 - - [27/Oct/2025 09:58:08] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 09:58:08,647 - WARNING - Connection pool is full, discarding connection: api.cloudinary.com. Connection pool size: 1
+2025-10-27 09:58:08,648 - ERROR - Error uploading file: public_id (student_ai/5/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-27 09:58:08,661 - INFO - 127.0.0.1 - - [27/Oct/2025 09:58:08] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 09:58:14,260 - WARNING - Connection pool is full, discarding connection: api.cloudinary.com. Connection pool size: 1
+2025-10-27 09:58:14,262 - ERROR - Error uploading file: public_id (student_ai/5/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-27 09:58:14,273 - INFO - 127.0.0.1 - - [27/Oct/2025 09:58:14] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 09:58:14,585 - WARNING - Connection pool is full, discarding connection: api.cloudinary.com. Connection pool size: 1
+2025-10-27 09:58:14,587 - ERROR - Error uploading file: public_id (student_ai/5/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-27 09:58:14,599 - INFO - 127.0.0.1 - - [27/Oct/2025 09:58:14] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 09:58:17,739 - INFO - 127.0.0.1 - - [27/Oct/2025 09:58:17] "GET /drive HTTP/1.1" 200 -
+2025-10-27 09:58:17,791 - INFO - 127.0.0.1 - - [27/Oct/2025 09:58:17] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 09:58:25,546 - INFO - File deleted: 1
+2025-10-27 09:58:25,547 - INFO - 127.0.0.1 - - [27/Oct/2025 09:58:25] "POST /api/drive/delete HTTP/1.1" 200 -
+2025-10-27 09:58:25,877 - INFO - 127.0.0.1 - - [27/Oct/2025 09:58:25] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 10:04:43,693 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.100.10.170:5000
+2025-10-27 10:04:43,693 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-27 10:04:43,721 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 10:04:53,381 - WARNING -  * Debugger is active!
+2025-10-27 10:04:53,392 - INFO -  * Debugger PIN: 106-954-531
+2025-10-27 10:04:53,509 - INFO - 127.0.0.1 - - [27/Oct/2025 10:04:53] "GET / HTTP/1.1" 200 -
+2025-10-27 10:04:56,444 - INFO - 127.0.0.1 - - [27/Oct/2025 10:04:56] "GET /drive HTTP/1.1" 200 -
+2025-10-27 10:04:56,513 - INFO - 127.0.0.1 - - [27/Oct/2025 10:04:56] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 10:05:52,316 - ERROR - Cloudinary upload failed: public_id (student_ai/4/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-27 10:05:52,331 - INFO - File uploaded: Cormen_Algorithms_Slides.pdf for CS Design & Algo
+2025-10-27 10:05:52,337 - INFO - 127.0.0.1 - - [27/Oct/2025 10:05:52] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 10:05:59,728 - INFO - 127.0.0.1 - - [27/Oct/2025 10:05:59] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-27 10:06:00,210 - WARNING - Connection pool is full, discarding connection: api.cloudinary.com. Connection pool size: 1
+2025-10-27 10:06:00,212 - ERROR - Cloudinary upload failed: public_id (student_ai/4/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-27 10:06:00,218 - ERROR - Error uploading file: [WinError 2] The system cannot find the file specified
+2025-10-27 10:06:00,222 - INFO - 127.0.0.1 - - [27/Oct/2025 10:06:00] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-27 10:06:02,665 - INFO - 127.0.0.1 - - [27/Oct/2025 10:06:02] "[33mGET /drive_files%04_CS_Design%20&%20Algo_Cormen_Algorithms_Slides.pdf HTTP/1.1[0m" 404 -
+2025-10-27 10:06:49,585 - INFO -  * Detected change in 'd:\\Python\\Development\\Frontend + Backend Projects(SuccessFuls)\\Personal Projects\\Student AI Assistant\\Parts\\Drive_Manager.py', reloading
+2025-10-27 10:06:49,586 - INFO -  * Detected change in 'd:\\Python\\Development\\Frontend + Backend Projects(SuccessFuls)\\Personal Projects\\Student AI Assistant\\Parts\\Drive_Manager.py', reloading
+2025-10-27 10:06:49,586 - INFO -  * Detected change in 'd:\\Python\\Development\\Frontend + Backend Projects(SuccessFuls)\\Personal Projects\\Student AI Assistant\\Parts\\Drive_Manager.py', reloading
+2025-10-27 10:06:50,406 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 10:50:06,723 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.100.10.170:5000
+2025-10-27 10:50:06,724 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-27 10:50:06,757 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 10:50:11,635 - WARNING -  * Debugger is active!
+2025-10-27 10:50:11,654 - INFO -  * Debugger PIN: 106-954-531
+2025-10-27 10:50:11,800 - INFO - 127.0.0.1 - - [27/Oct/2025 10:50:11] "GET / HTTP/1.1" 200 -
+2025-10-27 10:50:13,774 - INFO - 127.0.0.1 - - [27/Oct/2025 10:50:13] "GET /notes HTTP/1.1" 200 -
+2025-10-27 10:50:42,541 - INFO - 127.0.0.1 - - [27/Oct/2025 10:50:42] "[35m[1mPOST /api/notes/create HTTP/1.1[0m" 500 -
+2025-10-27 10:51:11,749 - INFO - 127.0.0.1 - - [27/Oct/2025 10:51:11] "[35m[1mPOST /api/notes/ask-ai HTTP/1.1[0m" 500 -
+2025-10-27 10:54:16,803 - INFO -  * Detected change in 'D:\\Python312\\Lib\\site-packages\\tenacity\\__init__.py', reloading
+2025-10-27 10:54:16,874 - INFO -  * Detected change in 'D:\\Python312\\Lib\\site-packages\\tenacity\\retry.py', reloading
+2025-10-27 10:54:16,927 - INFO -  * Detected change in 'D:\\Python312\\Lib\\site-packages\\tenacity\\wait.py', reloading
+2025-10-27 10:54:17,032 - INFO -  * Detected change in 'D:\\Python312\\Lib\\site-packages\\tenacity\\nap.py', reloading
+2025-10-27 10:54:17,089 - INFO -  * Detected change in 'D:\\Python312\\Lib\\site-packages\\tenacity\\stop.py', reloading
+2025-10-27 10:54:17,166 - INFO -  * Detected change in 'D:\\Python312\\Lib\\site-packages\\tenacity\\asyncio\\__init__.py', reloading
+2025-10-27 10:54:17,257 - INFO -  * Detected change in 'D:\\Python312\\Lib\\site-packages\\tenacity\\asyncio\\retry.py', reloading
+2025-10-27 10:54:17,327 - INFO -  * Detected change in 'D:\\Python312\\Lib\\site-packages\\tenacity\\before.py', reloading
+2025-10-27 10:54:17,362 - INFO -  * Detected change in 'D:\\Python312\\Lib\\site-packages\\tenacity\\after.py', reloading
+2025-10-27 10:54:17,953 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 10:59:32,481 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.100.10.170:5000
+2025-10-27 10:59:32,482 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-27 10:59:32,509 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 10:59:38,709 - WARNING -  * Debugger is active!
+2025-10-27 10:59:38,716 - INFO -  * Debugger PIN: 106-954-531
+2025-10-27 10:59:39,612 - INFO - 127.0.0.1 - - [27/Oct/2025 10:59:39] "GET / HTTP/1.1" 200 -
+2025-10-27 10:59:43,138 - INFO - 127.0.0.1 - - [27/Oct/2025 10:59:43] "GET /quiz HTTP/1.1" 200 -
+2025-10-27 10:59:45,278 - INFO - 127.0.0.1 - - [27/Oct/2025 10:59:45] "GET / HTTP/1.1" 200 -
+2025-10-27 10:59:51,865 - INFO - 127.0.0.1 - - [27/Oct/2025 10:59:51] "GET /search HTTP/1.1" 200 -
+2025-10-27 10:59:52,128 - INFO - 127.0.0.1 - - [27/Oct/2025 10:59:52] "POST /api/todo/manage HTTP/1.1" 200 -
+2025-10-27 11:00:58,212 - INFO - 127.0.0.1 - - [27/Oct/2025 11:00:58] "GET / HTTP/1.1" 200 -
+2025-10-27 11:01:01,366 - INFO - 127.0.0.1 - - [27/Oct/2025 11:01:01] "GET /health HTTP/1.1" 200 -
+2025-10-27 11:01:23,066 - ERROR - Error searching medical info: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 11:01:23,067 - INFO - 127.0.0.1 - - [27/Oct/2025 11:01:23] "POST /api/health/search HTTP/1.1" 200 -
+2025-10-27 11:22:24,923 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.100.10.170:5000
+2025-10-27 11:22:24,924 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-27 11:22:24,960 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 11:22:33,909 - WARNING -  * Debugger is active!
+2025-10-27 11:22:33,920 - INFO -  * Debugger PIN: 106-954-531
+2025-10-27 11:22:34,090 - INFO - 127.0.0.1 - - [27/Oct/2025 11:22:34] "GET / HTTP/1.1" 200 -
+2025-10-27 11:23:12,133 - INFO - 127.0.0.1 - - [27/Oct/2025 11:23:12] "GET / HTTP/1.1" 200 -
+2025-10-27 11:23:15,349 - INFO - 127.0.0.1 - - [27/Oct/2025 11:23:15] "GET /notes HTTP/1.1" 200 -
+2025-10-27 11:23:20,570 - INFO - 127.0.0.1 - - [27/Oct/2025 11:23:20] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-27 11:23:28,143 - INFO - Note 1 deleted from topic: Respiration
+2025-10-27 11:23:28,145 - INFO - 127.0.0.1 - - [27/Oct/2025 11:23:28] "POST /api/notes/delete HTTP/1.1" 200 -
+2025-10-27 11:23:28,402 - INFO - 127.0.0.1 - - [27/Oct/2025 11:23:28] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-27 11:23:31,637 - ERROR - AI enhancement error: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 11:23:31,640 - INFO - Note created for topic: Respiration
+2025-10-27 11:23:31,641 - INFO - 127.0.0.1 - - [27/Oct/2025 11:23:31] "POST /api/notes/create HTTP/1.1" 200 -
+2025-10-27 11:23:32,010 - INFO - 127.0.0.1 - - [27/Oct/2025 11:23:32] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-27 11:23:38,394 - INFO - 127.0.0.1 - - [27/Oct/2025 11:23:38] "POST /api/notes/search HTTP/1.1" 200 -
+2025-10-27 11:23:44,105 - INFO - 127.0.0.1 - - [27/Oct/2025 11:23:44] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-27 11:23:46,231 - ERROR - Error summarizing notes: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-10-27 11:23:46,233 - INFO - 127.0.0.1 - - [27/Oct/2025 11:23:46] "POST /api/notes/summarize HTTP/1.1" 200 -
+2025-10-29 14:33:11,761 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.100.27.220:5000
+2025-10-29 14:33:11,762 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-29 14:33:11,814 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-29 14:33:18,012 - WARNING -  * Debugger is active!
+2025-10-29 14:33:18,023 - INFO -  * Debugger PIN: 106-954-531
+2025-10-29 14:33:18,147 - INFO - 127.0.0.1 - - [29/Oct/2025 14:33:18] "GET / HTTP/1.1" 200 -
+2025-10-29 14:33:18,471 - INFO - 127.0.0.1 - - [29/Oct/2025 14:33:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-10-29 14:33:26,492 - INFO - 127.0.0.1 - - [29/Oct/2025 14:33:26] "GET /notes HTTP/1.1" 200 -
+2025-10-29 14:33:41,642 - INFO - 127.0.0.1 - - [29/Oct/2025 14:33:41] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-29 14:33:48,881 - INFO - Note 1 deleted from topic: Respiration
+2025-10-29 14:33:48,882 - INFO - 127.0.0.1 - - [29/Oct/2025 14:33:48] "POST /api/notes/delete HTTP/1.1" 200 -
+2025-10-29 14:33:49,141 - INFO - 127.0.0.1 - - [29/Oct/2025 14:33:49] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-29 14:34:07,739 - INFO - Note enhanced with AI for topic: Respiration
+2025-10-29 14:34:07,742 - INFO - Note created for topic: Respiration
+2025-10-29 14:34:07,744 - INFO - 127.0.0.1 - - [29/Oct/2025 14:34:07] "POST /api/notes/create HTTP/1.1" 200 -
+2025-10-29 14:34:08,114 - INFO - 127.0.0.1 - - [29/Oct/2025 14:34:08] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-29 14:34:57,366 - INFO - 127.0.0.1 - - [29/Oct/2025 14:34:57] "POST /api/notes/search HTTP/1.1" 200 -
+2025-10-29 14:35:07,163 - INFO - 127.0.0.1 - - [29/Oct/2025 14:35:07] "POST /api/notes/search HTTP/1.1" 200 -
+2025-10-29 14:36:16,452 - INFO - Note enhanced with AI for topic: Homosapian
+2025-10-29 14:36:16,456 - INFO - Note created for topic: Homosapian
+2025-10-29 14:36:16,458 - INFO - 127.0.0.1 - - [29/Oct/2025 14:36:16] "POST /api/notes/create HTTP/1.1" 200 -
+2025-10-29 14:36:16,826 - INFO - 127.0.0.1 - - [29/Oct/2025 14:36:16] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-29 14:37:12,229 - INFO - Note enhanced with AI for topic: Class Diagram
+2025-10-29 14:37:12,233 - INFO - Note created for topic: Class Diagram
+2025-10-29 14:37:12,235 - INFO - 127.0.0.1 - - [29/Oct/2025 14:37:12] "POST /api/notes/create HTTP/1.1" 200 -
+2025-10-29 14:37:12,615 - INFO - 127.0.0.1 - - [29/Oct/2025 14:37:12] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-29 15:17:02,869 - INFO - 127.0.0.1 - - [29/Oct/2025 15:17:02] "GET / HTTP/1.1" 200 -
+2025-10-29 15:17:05,884 - INFO - 127.0.0.1 - - [29/Oct/2025 15:17:05] "GET /drive HTTP/1.1" 200 -
+2025-10-29 15:17:05,944 - INFO - 127.0.0.1 - - [29/Oct/2025 15:17:05] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-29 15:17:36,349 - ERROR - Error uploading file: public_id (student_ai/4/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-29 15:17:36,354 - INFO - 127.0.0.1 - - [29/Oct/2025 15:17:36] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-29 15:17:53,357 - ERROR - Error uploading file: public_id (student_ai/4/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-29 15:17:53,362 - INFO - 127.0.0.1 - - [29/Oct/2025 15:17:53] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-29 15:17:55,846 - INFO -  * Detected change in 'd:\\Python\\Development\\Frontend + Backend Projects(SuccessFuls)\\Personal Projects\\Student AI Assistant\\Parts\\Drive_Manager.py', reloading
+2025-10-29 15:17:58,208 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-29 15:18:01,811 - WARNING -  * Debugger is active!
+2025-10-29 15:18:01,820 - INFO -  * Debugger PIN: 106-954-531
+2025-10-29 15:18:12,904 - ERROR - Error uploading file: public_id (student_ai/4/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-29 15:18:12,909 - INFO - 127.0.0.1 - - [29/Oct/2025 15:18:12] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-29 15:18:16,871 - WARNING - Connection pool is full, discarding connection: api.cloudinary.com. Connection pool size: 1
+2025-10-29 15:18:16,872 - ERROR - Error uploading file: public_id (student_ai/4/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-29 15:18:16,877 - INFO - 127.0.0.1 - - [29/Oct/2025 15:18:16] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-29 15:18:17,680 - WARNING - Connection pool is full, discarding connection: api.cloudinary.com. Connection pool size: 1
+2025-10-29 15:18:17,682 - ERROR - Error uploading file: public_id (student_ai/4/CS/Design & Algo/Cormen_Algorithms_Slides) is invalid
+2025-10-29 15:18:17,688 - INFO - 127.0.0.1 - - [29/Oct/2025 15:18:17] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-10-29 15:20:21,943 - INFO -  * Detected change in 'D:\\Python312\\Lib\\datetime.py', reloading
+2025-10-29 15:20:22,060 - INFO -  * Detected change in 'D:\\Python312\\Lib\\_pydatetime.py', reloading
+2025-10-29 15:20:23,089 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-29 15:20:27,840 - WARNING -  * Debugger is active!
+2025-10-29 15:20:27,847 - INFO -  * Debugger PIN: 106-954-531
+2025-10-29 15:21:33,900 - INFO - 127.0.0.1 - - [29/Oct/2025 15:21:33] "GET / HTTP/1.1" 200 -
+2025-10-29 17:02:15,057 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.100.27.220:5000
+2025-10-29 17:02:15,057 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-29 17:02:15,091 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-29 17:02:23,191 - WARNING -  * Debugger is active!
+2025-10-29 17:02:23,197 - INFO -  * Debugger PIN: 106-954-531
+2025-10-29 17:02:31,491 - INFO - 127.0.0.1 - - [29/Oct/2025 17:02:31] "GET / HTTP/1.1" 200 -
+2025-10-29 17:02:31,723 - INFO - 127.0.0.1 - - [29/Oct/2025 17:02:31] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-10-29 17:02:34,544 - INFO - 127.0.0.1 - - [29/Oct/2025 17:02:34] "GET /notes HTTP/1.1" 200 -
+2025-10-29 17:03:17,456 - INFO - Note enhanced with AI for topic: Subnating
+2025-10-29 17:03:17,457 - INFO - Note created for topic: Subnating
+2025-10-29 17:03:17,458 - INFO - 127.0.0.1 - - [29/Oct/2025 17:03:17] "POST /api/notes/create HTTP/1.1" 200 -
+2025-10-29 17:03:17,837 - INFO - 127.0.0.1 - - [29/Oct/2025 17:03:17] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-29 17:04:34,127 - INFO - 127.0.0.1 - - [29/Oct/2025 17:04:34] "GET /drive HTTP/1.1" 200 -
+2025-10-29 17:04:34,392 - INFO - 127.0.0.1 - - [29/Oct/2025 17:04:34] "POST /api/drive/list HTTP/1.1" 200 -
+2025-10-29 17:04:51,604 - INFO - 127.0.0.1 - - [29/Oct/2025 17:04:51] "GET / HTTP/1.1" 200 -
+2025-10-29 22:50:43,173 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.100.21.246:5000
+2025-10-29 22:50:43,174 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-29 22:50:43,219 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-29 22:50:46,753 - WARNING -  * Debugger is active!
+2025-10-29 22:50:46,768 - INFO -  * Debugger PIN: 106-954-531
+2025-10-29 22:50:51,620 - INFO - 127.0.0.1 - - [29/Oct/2025 22:50:51] "GET / HTTP/1.1" 200 -
+2025-10-29 22:50:55,323 - INFO - 127.0.0.1 - - [29/Oct/2025 22:50:55] "GET /notes HTTP/1.1" 200 -
+2025-10-29 22:51:31,612 - INFO - Note enhanced with AI for topic: Quick Sort
+2025-10-29 22:51:31,618 - INFO - Note created for topic: Quick Sort
+2025-10-29 22:51:31,620 - INFO - 127.0.0.1 - - [29/Oct/2025 22:51:31] "POST /api/notes/create HTTP/1.1" 200 -
+2025-10-29 22:51:32,013 - INFO - 127.0.0.1 - - [29/Oct/2025 22:51:32] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-29 22:52:35,564 - INFO - 127.0.0.1 - - [29/Oct/2025 22:52:35] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-29 22:52:40,798 - INFO - 127.0.0.1 - - [29/Oct/2025 22:52:40] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-29 22:52:46,178 - INFO - 127.0.0.1 - - [29/Oct/2025 22:52:46] "GET / HTTP/1.1" 200 -
+2025-10-29 22:53:03,309 - INFO - 127.0.0.1 - - [29/Oct/2025 22:53:03] "GET /health HTTP/1.1" 200 -
+2025-10-29 22:53:55,320 - INFO - Medical info searched: headache
+2025-10-29 22:53:55,322 - INFO - 127.0.0.1 - - [29/Oct/2025 22:53:55] "POST /api/health/search HTTP/1.1" 200 -
+2025-10-29 22:55:14,776 - INFO - 127.0.0.1 - - [29/Oct/2025 22:55:14] "GET / HTTP/1.1" 200 -
+2025-10-29 22:55:19,890 - INFO - 127.0.0.1 - - [29/Oct/2025 22:55:19] "GET /quiz HTTP/1.1" 200 -
+2025-10-29 22:56:26,626 - INFO - 127.0.0.1 - - [29/Oct/2025 22:56:26] "POST /api/quiz/generate-from-topic HTTP/1.1" 200 -
+2025-10-29 22:57:24,859 - INFO - 127.0.0.1 - - [29/Oct/2025 22:57:24] "POST /api/quiz/generate-from-notes HTTP/1.1" 200 -
+2025-10-29 22:57:37,376 - INFO - 127.0.0.1 - - [29/Oct/2025 22:57:37] "GET / HTTP/1.1" 200 -
+2025-10-29 22:57:42,024 - INFO - 127.0.0.1 - - [29/Oct/2025 22:57:42] "GET /search HTTP/1.1" 200 -
+2025-10-29 22:57:42,108 - INFO - 127.0.0.1 - - [29/Oct/2025 22:57:42] "POST /api/todo/manage HTTP/1.1" 200 -
+2025-10-29 22:57:51,572 - INFO - 127.0.0.1 - - [29/Oct/2025 22:57:51] "GET / HTTP/1.1" 200 -
+2025-10-29 22:57:54,191 - INFO - 127.0.0.1 - - [29/Oct/2025 22:57:54] "GET /drive HTTP/1.1" 200 -
+2025-10-29 22:57:54,476 - INFO - 127.0.0.1 - - [29/Oct/2025 22:57:54] "POST /api/drive/list HTTP/1.1" 200 -

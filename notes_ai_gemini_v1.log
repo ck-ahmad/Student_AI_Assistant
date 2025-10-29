@@ -1,0 +1,147 @@
+2025-10-27 10:55:44,371 - INFO - NotesAI initialized using model=gemini-1.5-flash
+2025-10-27 10:55:45,984 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.100.10.170:5000
+2025-10-27 10:55:45,985 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-27 10:55:46,008 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 10:55:51,149 - INFO - NotesAI initialized using model=gemini-1.5-flash
+2025-10-27 10:55:54,294 - WARNING -  * Debugger is active!
+2025-10-27 10:55:54,320 - INFO -  * Debugger PIN: 106-954-531
+2025-10-27 10:55:54,457 - INFO - 127.0.0.1 - - [27/Oct/2025 10:55:54] "GET / HTTP/1.1" 200 -
+2025-10-27 10:55:54,914 - INFO - 127.0.0.1 - - [27/Oct/2025 10:55:54] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-10-27 10:56:01,861 - INFO - 127.0.0.1 - - [27/Oct/2025 10:56:01] "GET /notes HTTP/1.1" 200 -
+2025-10-27 10:56:21,025 - INFO - 127.0.0.1 - - [27/Oct/2025 10:56:21] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-27 10:56:29,376 - INFO - Deleted note 1 from topic='Respiration'
+2025-10-27 10:56:29,379 - INFO - 127.0.0.1 - - [27/Oct/2025 10:56:29] "POST /api/notes/delete HTTP/1.1" 200 -
+2025-10-27 10:56:29,403 - INFO - 127.0.0.1 - - [27/Oct/2025 10:56:29] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-27 10:56:35,686 - WARNING - Gemini call failed: Unknown field for GenerateContentRequest: max_output_tokens. Retrying...
+2025-10-27 10:56:36,689 - WARNING - Gemini call failed: Unknown field for GenerateContentRequest: max_output_tokens. Retrying...
+2025-10-27 10:56:38,692 - WARNING - Gemini call failed: Unknown field for GenerateContentRequest: max_output_tokens. Retrying...
+2025-10-27 10:56:38,693 - ERROR - AI enhancement failed: RetryError[<Future at 0x1771f2328d0 state=finished raised ValueError>]
+Traceback (most recent call last):
+  File "D:\Python312\Lib\site-packages\tenacity\__init__.py", line 480, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "d:\Python\Development\Frontend + Backend Projects(SuccessFuls)\Personal Projects\Student AI Assistant\Parts\Notes_AI.py", line 567, in call_gemini
+    response = model_obj.generate_content(prompt, max_output_tokens=max_output_tokens)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\google\generativeai\generative_models.py", line 234, in generate_content
+    request = self._prepare_request(
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\google\generativeai\generative_models.py", line 215, in _prepare_request
+    return glm.GenerateContentRequest(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\proto\message.py", line 724, in __init__
+    raise ValueError(
+ValueError: Unknown field for GenerateContentRequest: max_output_tokens
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\Python\Development\Frontend + Backend Projects(SuccessFuls)\Personal Projects\Student AI Assistant\Parts\Notes_AI.py", line 719, in enhance_note_with_ai
+    text = call_gemini(prompt, model=self.model, max_output_tokens=800)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\tenacity\__init__.py", line 338, in wrapped_f
+    return copy(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\tenacity\__init__.py", line 477, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\tenacity\__init__.py", line 378, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\tenacity\__init__.py", line 421, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x1771f2328d0 state=finished raised ValueError>]
+2025-10-27 10:56:38,709 - WARNING - AI enhancement failed; saving original note. Error: RetryError[<Future at 0x1771f2328d0 state=finished raised ValueError>]
+2025-10-27 10:56:38,712 - INFO - Note created for topic='Respiration' (AI=True)
+2025-10-27 10:56:38,716 - INFO - 127.0.0.1 - - [27/Oct/2025 10:56:38] "POST /api/notes/create HTTP/1.1" 200 -
+2025-10-27 10:56:38,832 - INFO - 127.0.0.1 - - [27/Oct/2025 10:56:38] "POST /api/notes/view HTTP/1.1" 200 -
+2025-10-27 10:56:50,183 - WARNING - Gemini call failed: Unknown field for GenerateContentRequest: max_output_tokens. Retrying...
+2025-10-27 10:56:51,185 - WARNING - Gemini call failed: Unknown field for GenerateContentRequest: max_output_tokens. Retrying...
+2025-10-27 10:56:53,188 - WARNING - Gemini call failed: Unknown field for GenerateContentRequest: max_output_tokens. Retrying...
+2025-10-27 10:56:53,217 - ERROR - Error asking AI about notes: RetryError[<Future at 0x1771f2ff950 state=finished raised ValueError>]
+Traceback (most recent call last):
+  File "D:\Python312\Lib\site-packages\tenacity\__init__.py", line 480, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "d:\Python\Development\Frontend + Backend Projects(SuccessFuls)\Personal Projects\Student AI Assistant\Parts\Notes_AI.py", line 567, in call_gemini
+    response = model_obj.generate_content(prompt, max_output_tokens=max_output_tokens)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\google\generativeai\generative_models.py", line 234, in generate_content
+    request = self._prepare_request(
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\google\generativeai\generative_models.py", line 215, in _prepare_request
+    return glm.GenerateContentRequest(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\proto\message.py", line 724, in __init__
+    raise ValueError(
+ValueError: Unknown field for GenerateContentRequest: max_output_tokens
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\Python\Development\Frontend + Backend Projects(SuccessFuls)\Personal Projects\Student AI Assistant\Parts\Notes_AI.py", line 766, in ask_ai_about_notes
+    answer = call_gemini(prompt, model=self.model, max_output_tokens=800)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\tenacity\__init__.py", line 338, in wrapped_f
+    return copy(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\tenacity\__init__.py", line 477, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\tenacity\__init__.py", line 378, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\tenacity\__init__.py", line 421, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x1771f2ff950 state=finished raised ValueError>]
+2025-10-27 10:56:53,223 - INFO - 127.0.0.1 - - [27/Oct/2025 10:56:53] "POST /api/notes/ask-ai HTTP/1.1" 200 -
+2025-10-27 10:57:07,418 - INFO - 127.0.0.1 - - [27/Oct/2025 10:57:07] "POST /api/notes/search HTTP/1.1" 200 -
+2025-10-27 10:57:15,298 - WARNING - Gemini call failed: Unknown field for GenerateContentRequest: max_output_tokens. Retrying...
+2025-10-27 10:57:16,300 - WARNING - Gemini call failed: Unknown field for GenerateContentRequest: max_output_tokens. Retrying...
+2025-10-27 10:57:18,305 - WARNING - Gemini call failed: Unknown field for GenerateContentRequest: max_output_tokens. Retrying...
+2025-10-27 10:57:18,307 - ERROR - Error summarizing notes: RetryError[<Future at 0x1771f2fc260 state=finished raised ValueError>]
+Traceback (most recent call last):
+  File "D:\Python312\Lib\site-packages\tenacity\__init__.py", line 480, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "d:\Python\Development\Frontend + Backend Projects(SuccessFuls)\Personal Projects\Student AI Assistant\Parts\Notes_AI.py", line 567, in call_gemini
+    response = model_obj.generate_content(prompt, max_output_tokens=max_output_tokens)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\google\generativeai\generative_models.py", line 234, in generate_content
+    request = self._prepare_request(
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\google\generativeai\generative_models.py", line 215, in _prepare_request
+    return glm.GenerateContentRequest(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\proto\message.py", line 724, in __init__
+    raise ValueError(
+ValueError: Unknown field for GenerateContentRequest: max_output_tokens
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\Python\Development\Frontend + Backend Projects(SuccessFuls)\Personal Projects\Student AI Assistant\Parts\Notes_AI.py", line 744, in summarize_notes
+    summary = call_gemini(prompt, model=self.model, max_output_tokens=1200)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\tenacity\__init__.py", line 338, in wrapped_f
+    return copy(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\tenacity\__init__.py", line 477, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\tenacity\__init__.py", line 378, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "D:\Python312\Lib\site-packages\tenacity\__init__.py", line 421, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x1771f2fc260 state=finished raised ValueError>]
+2025-10-27 10:57:18,313 - INFO - 127.0.0.1 - - [27/Oct/2025 10:57:18] "POST /api/notes/summarize HTTP/1.1" 200 -
+2025-10-27 10:57:29,026 - INFO -  * Detected change in 'D:\\Python312\\Lib\\site-packages\\flask\\json\\__init__.py', reloading
+2025-10-27 10:57:29,045 - INFO -  * Detected change in 'D:\\Python312\\Lib\\site-packages\\werkzeug\\wrappers\\response.py', reloading
+2025-10-27 10:57:29,958 - INFO -  * Restarting with watchdog (windowsapi)
+2025-10-27 10:57:34,762 - INFO - NotesAI initialized using model=gemini-1.5-flash
+2025-10-27 10:57:36,055 - WARNING -  * Debugger is active!
+2025-10-27 10:57:36,062 - INFO -  * Debugger PIN: 106-954-531

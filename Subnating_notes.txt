@@ -1,0 +1,47 @@
+2025-10-29 17:03:17 - ### **Subnetting: Key Concepts**
+
+Subnetting is the process of dividing a single, large physical network into smaller, logical sub-networks or "subnets."
+
+**Why Subnet?**
+*   **Improve Performance:** Reduces overall network traffic and congestion by creating smaller broadcast domains.
+*   **Enhance Security:** Allows you to isolate networks and control traffic flow between them.
+*   **Simplify Management:** Makes a large network easier to manage and troubleshoot.
+
+---
+
+### **Core Concepts**
+
+*   **IP Address:** Has two parts: the **Network ID** (identifies the network) and the **Host ID** (identifies a specific device on that network).
+
+*   **Subnet Mask:** A 32-bit number that separates the Network ID from the Host ID.
+    *   The `1`s in the mask represent the network portion.
+    *   The `0`s in the mask represent the host portion.
+    *   *Example:* `255.255.255.0`
+
+*   **CIDR (Classless Inter-Domain Routing) Notation:** A shorthand method for writing the subnet mask.
+    *   The number after the slash (e.g., `/24`) indicates how many bits are used for the network portion.
+    *   *Example:* `192.168.1.0 /24` is the same as using the subnet mask `255.255.255.0`.
+
+---
+
+### **How It Works: "Borrowing Bits"**
+
+Subnetting is done by "borrowing" bits from the Host ID portion of the IP address and adding them to the Network ID portion.
+
+*   **The Trade-off:**
+    *   **More bits borrowed** → **More subnets**, but **Fewer hosts** per subnet.
+    *   **Fewer bits borrowed** → **Fewer subnets**, but **More hosts** per subnet.
+
+---
+
+### **Special Addresses in Every Subnet**
+
+Two addresses in every subnet are reserved and cannot be assigned to devices:
+
+*   **Network Address:**
+    *   The very first IP address in a subnet.
+    *   It identifies the subnet itself. (All host bits are `0`).
+
+*   **Broadcast Address:**
+    *   The very last IP address in a subnet.
+    *   Used to send a message to all devices on that specific subnet. (All host bits are `1`).
