@@ -31,7 +31,7 @@ A comprehensive AI-powered web application designed specifically for students, f
 - 🐍 **Tech Stack**: Python, Flask, Google Gemini AI, RESTful APIs
 - 💡 **Key Contributions**:
   - Built robust Flask REST API backend
-  - Integrated Google Gemini 1.5 Flash AI model
+  - Integrated Google Gemini 2.5 Pro AI model
   - Developed all AI-powered features (Notes, Quiz, Health, Search)
   - Implemented file upload and cloud storage system
   - Created database architecture and data management
