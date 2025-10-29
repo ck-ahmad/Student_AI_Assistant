@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drive Manager - Student AI Assistant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: opacity 0.3s;
+        }
+
+        .navbar a:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            font-weight: bold;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        input[type="text"], input[type="file"], input[type="number"], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 10px;
+        }
+
+        .btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+
+        .file-list {
+            margin-top: 20px;
+        }
+
+        .file-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-info {
+            flex: 1;
+        }
+
+        .file-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .file-meta {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .file-actions button {
+            margin-left: 5px;
+            padding: 8px 15px;
+            font-size: 0.9em;
+        }
+
+        .message {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/">← Back to Home</a>
+        <h2>📚 Drive Manager</h2>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <h1>Manage Your Study Materials</h1>
+            <p style="color: #666; margin-bottom: 20px;">Upload files, add links, and organize everything in one place</p>
+            
+            <div id="message" class="message"></div>
+
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('upload')">Upload File</button>
+                <button class="tab" onclick="switchTab('link')">Add Link</button>
+                <button class="tab" onclick="switchTab('view')">View Files</button>
+                <button class="tab" onclick="switchTab('predefined')">Course Materials</button>
+            </div>
+
+            <!-- Upload File Tab -->
+            <div id="upload-tab" class="tab-content active">
+                <h3>Upload File to Cloud</h3>
+                
+                <div class="form-group">
+                    <label for="upload-file">Select File:</label>
+                    <input type="file" id="upload-file">
+                </div>
+
+                <div class="form-group">
+                    <label for="upload-semester">Semester (1-8):</label>
+                    <select id="upload-semester">
+                        <option value="">Select Semester</option>
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                        <option value="3">Semester 3</option>
+                        <option value="4">Semester 4</option>
+                        <option value="5">Semester 5</option>
+                        <option value="6">Semester 6</option>
+                        <option value="7">Semester 7</option>
+                        <option value="8">Semester 8</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="upload-degree">Degree:</label>
+                    <select id="upload-degree">
+                        <option value="">Select Degree</option>
+                        <option value="CS">Computer Science</option>
+                        <option value="SE">Software Engineering</option>
+                        <option value="AI">Artificial Intelligence</option>
+                        <option value="EE">Electrical Engineering</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="upload-subject">Subject Code:</label>
+                    <input type="text" id="upload-subject" placeholder="e.g., PF, OOP, DSA">
+                </div>
+
+                <div class="form-group">
+                    <label for="upload-description">Description (Optional):</label>
+                    <textarea id="upload-description" rows="3" placeholder="Add notes about this file..."></textarea>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="use-cloud" checked>
+                    <label for="use-cloud" style="margin: 0;">Upload to Cloud Storage (recommended)</label>
+                </div>
+
+                <button class="btn" onclick="uploadFile()">📤 Upload File</button>
+            </div>
+
+            <!-- Add Link Tab -->
+            <div id="link-tab" class="tab-content">
+                <h3>Add External Link</h3>
+                
+                <div class="form-group">
+                    <label for="link-url">Link URL:</label>
+                    <input type="text" id="link-url" placeholder="https://drive.google.com/...">
+                </div>
+
+                <div class="form-group">
+                    <label for="link-filename">File Name:</label>
+                    <input type="text" id="link-filename" placeholder="e.g., Lecture Notes - Chapter 3">
+                </div>
+
+                <div class="form-group">
+                    <label for="link-semester">Semester (1-8):</label>
+                    <select id="link-semester">
+                        <option value="">Select Semester</option>
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                        <option value="3">Semester 3</option>
+                        <option value="4">Semester 4</option>
+                        <option value="5">Semester 5</option>
+                        <option value="6">Semester 6</option>
+                        <option value="7">Semester 7</option>
+                        <option value="8">Semester 8</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="link-degree">Degree:</label>
+                    <select id="link-degree">
+                        <option value="">Select Degree</option>
+                        <option value="CS">Computer Science</option>
+                        <option value="SE">Software Engineering</option>
+                        <option value="AI">Artificial Intelligence</option>
+                        <option value="EE">Electrical Engineering</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="link-subject">Subject Code:</label>
+                    <input type="text" id="link-subject" placeholder="e.g., PF, OOP, DSA">
+                </div>
+
+                <div class="form-group">
+                    <label for="link-description">Description (Optional):</label>
+                    <textarea id="link-description" rows="3" placeholder="Add notes about this link..."></textarea>
+                </div>
+
+                <button class="btn" onclick="addLink()">🔗 Add Link</button>
+            </div>
+
+            <!-- View Files Tab -->
+            <div id="view-tab" class="tab-content">
+                <h3>Your Files</h3>
+                
+                <div style="margin-bottom: 20px;">
+                    <div class="form-group">
+                        <label>Filter by Semester:</label>
+                        <select id="filter-semester" onchange="loadFiles()">
+                            <option value="">All Semesters</option>
+                            <option value="1">Semester 1</option>
+                            <option value="2">Semester 2</option>
+                            <option value="3">Semester 3</option>
+                            <option value="4">Semester 4</option>
+                            <option value="5">Semester 5</option>
+                            <option value="6">Semester 6</option>
+                            <option value="7">Semester 7</option>
+                            <option value="8">Semester 8</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="btn btn-secondary" onclick="loadFiles()">🔄 Refresh Files</button>
+
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Loading files...</p>
+                </div>
+
+                <div class="file-list" id="file-list"></div>
+            </div>
+
+            <!-- Predefined Course Materials Tab -->
+            <div id="predefined-tab" class="tab-content">
+                <h3>Quick Access to Course Materials</h3>
+                
+                <div class="form-group">
+                    <label for="pred-semester">Semester:</label>
+                    <select id="pred-semester">
+                        <option value="">Select Semester</option>
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                        <option value="3">Semester 3</option>
+                        <option value="4">Semester 4</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="pred-subject">Subject Code:</label>
+                    <select id="pred-subject">
+                        <option value="">Select Subject</option>
+                        <option value="pf">Programming Fundamentals (PF)</option>
+                        <option value="ict">ICT</option>
+                        <option value="oop">Object Oriented Programming (OOP)</option>
+                        <option value="dsa">Data Structures & Algorithms (DSA)</option>
+                        <option value="coal">Computer Architecture (COAL)</option>
+                        <option value="ds">Discrete Structures (DS)</option>
+                        <option value="db">Database (DB)</option>
+                        <option value="os">Operating Systems (OS)</option>
+                    </select>
+                </div>
+
+                <button class="btn" onclick="getPredefinedLink()">🔍 Get Course Materials</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tab + '-tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function showMessage(text, type) {
+            const msg = document.getElementById('message');
+            msg.textContent = text;
+            msg.className = `message ${type}`;
+            msg.style.display = 'block';
+            setTimeout(() => msg.style.display = 'none', 5000);
+        }
+
+        async function uploadFile() {
+            const fileInput = document.getElementById('upload-file');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                showMessage('Please select a file', 'error');
+                return;
+            }
+
+            const semester = document.getElementById('upload-semester').value;
+            const degree = document.getElementById('upload-degree').value;
+            const subject = document.getElementById('upload-subject').value;
+            const description = document.getElementById('upload-description').value;
+            const useCloud = document.getElementById('use-cloud').checked;
+
+            if (!semester || !degree || !subject) {
+                showMessage('Please fill all required fields', 'error');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('semester', semester);
+            formData.append('degree', degree);
+            formData.append('subject', subject);
+            formData.append('description', description);
+            formData.append('use_cloud', useCloud);
+
+            document.getElementById('loading').style.display = 'block';
+
+            try {
+                const response = await fetch('/api/drive/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    showMessage(data.message, 'success');
+                    fileInput.value = '';
+                    document.getElementById('upload-description').value = '';
+                } else {
+                    showMessage(data.message, 'error');
+                }
+            } catch (error) {
+                showMessage('Error uploading file: ' + error.message, 'error');
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        async function addLink() {
+            const link = document.getElementById('link-url').value.trim();
+            const filename = document.getElementById('link-filename').value.trim();
+            const semester = document.getElementById('link-semester').value;
+            const degree = document.getElementById('link-degree').value;
+            const subject = document.getElementById('link-subject').value.trim();
+            const description = document.getElementById('link-description').value.trim();
+
+            if (!link || !semester || !degree || !subject) {
+                showMessage('Please fill all required fields', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/drive/add-link', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        link, filename, semester, degree, subject, description
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    showMessage(data.message, 'success');
+                    document.getElementById('link-url').value = '';
+                    document.getElementById('link-filename').value = '';
+                    document.getElementById('link-description').value = '';
+                } else {
+                    showMessage(data.message, 'error');
+                }
+            } catch (error) {
+                showMessage('Error adding link: ' + error.message, 'error');
+            }
+        }
+
+        async function loadFiles() {
+            const semester = document.getElementById('filter-semester').value;
+            document.getElementById('loading').style.display = 'block';
+
+            try {
+                const response = await fetch('/api/drive/list', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ semester: semester || null })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayFiles(data.files);
+                } else {
+                    showMessage(data.message, 'error');
+                }
+            } catch (error) {
+                showMessage('Error loading files: ' + error.message, 'error');
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        function displayFiles(files) {
+            const list = document.getElementById('file-list');
+            
+            if (files.length === 0) {
+                list.innerHTML = '<p style="text-align: center; color: #666;">No files found. Upload some files to get started!</p>';
+                return;
+            }
+
+            list.innerHTML = files.map(file => `
+                <div class="file-item">
+                    <div class="file-info">
+                        <div class="file-name">${file.filename}</div>
+                        <div class="file-meta">
+                            📚 ${file.degree} - ${file.subject} | Semester ${file.semester}
+                            ${file.description ? `<br>📝 ${file.description}` : ''}
+                        </div>
+                    </div>
+                    <div class="file-actions">
+                        <button class="btn" onclick="openFile('${file.url}')">Open</button>
+                        <button class="btn btn-danger" onclick="deleteFile('${file.id}')">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openFile(url) {
+            window.open(url, '_blank');
+        }
+
+        async function deleteFile(fileId) {
+            if (!confirm('Are you sure you want to delete this file?')) return;
+
+            try {
+                const response = await fetch('/api/drive/delete', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ file_id: fileId })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    showMessage(data.message, 'success');
+                    loadFiles();
+                } else {
+                    showMessage(data.message, 'error');
+                }
+            } catch (error) {
+                showMessage('Error deleting file: ' + error.message, 'error');
+            }
+        }
+
+        async function getPredefinedLink() {
+            const semester = document.getElementById('pred-semester').value;
+            const subject = document.getElementById('pred-subject').value;
+
+            if (!semester || !subject) {
+                showMessage('Please select both semester and subject', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/drive/predefined', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ semester, subject })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    window.open(data.link, '_blank');
+                    showMessage('Opening course materials...', 'success');
+                } else {
+                    showMessage('Course materials not available for this combination', 'error');
+                }
+            } catch (error) {
+                showMessage('Error: ' + error.message, 'error');
+            }
+        }
+
+        // Load files when view tab is opened
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFiles();
+        });
+    </script>
+</body>
+</html>

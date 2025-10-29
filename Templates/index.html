@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student AI Assistant - Your Complete Academic Companion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: fadeInDown 1s;
+        }
+
+        header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+            animation: fadeInUp 1s;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        .feature-card:hover .feature-icon {
+            animation: spin 0.6s ease;
+        }
+
+        .feature-card h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: auto;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid white;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎓 Student AI Assistant</h1>
+        <p>Your Complete Academic Companion Powered by AI</p>
+    </header>
+
+    <div class="container">
+        <div class="features-grid">
+            <a href="/notes" class="feature-card">
+                <div class="feature-icon">📝</div>
+                <h2>Smart Notes</h2>
+                <p>Create, manage, and enhance your notes with AI. Get automatic summaries, flashcards, and answers to your questions.</p>
+                <span class="badge">🤖 AI Powered</span>
+            </a>
+
+            <a href="/drive" class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h2>Drive Manager</h2>
+                <p>Upload files, add links, and organize all your study materials. Generate AI study plans for better learning.</p>
+                <span class="badge">☁️ Cloud Storage</span>
+            </a>
+
+            <a href="/search" class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h2>Smart Search</h2>
+                <p>Search the web with AI suggestions, find files on your PC, manage to-do lists, and track study time.</p>
+                <span class="badge">✨ AI Enhanced</span>
+            </a>
+
+            <a href="/health" class="feature-card">
+                <div class="feature-icon">🏥</div>
+                <h2>Health Tracker</h2>
+                <p>Get health information, symptom analysis, wellness tips, and mental health support from AI.</p>
+                <span class="badge">🩺 Medical Info</span>
+            </a>
+
+            <a href="/quiz" class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h2>Quiz Generator</h2>
+                <p>Generate quizzes from your notes or any topic. Get instant AI feedback and track your performance.</p>
+                <span class="badge">📊 Performance Tracking</span>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>🤖 Powered by Google Gemini AI</strong></p>
+        <p>&copy; 2025 Student AI Assistant | Built for Hackathon</p>
+        <p>Made with ❤️ for students, by students</p>
+    </footer>
+</body>
+</html>

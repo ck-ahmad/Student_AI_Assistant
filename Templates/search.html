@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Search - Student AI Assistant</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+        
+        .navbar a { color: white; text-decoration: none; font-size: 1.1em; }
+        
+        .container { max-width: 1200px; margin: 30px auto; padding: 20px; }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        
+        h1 { color: #667eea; margin-bottom: 10px; }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            font-weight: bold;
+        }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1.1em;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary { background: #6c757d; }
+        .btn-success { background: #28a745; }
+        .btn-danger { background: #dc3545; }
+        
+        .suggestion-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin: 20px 0;
+            white-space: pre-wrap;
+            line-height: 1.8;
+        }
+        
+        .todo-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .todo-item.completed {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+        
+        .timer-display {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .timer-display h2 {
+            font-size: 4em;
+            margin: 20px 0;
+        }
+        
+        .form-group { margin-bottom: 20px; }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+        
+        .engine-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .engine-btn {
+            padding: 15px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .engine-btn:hover, .engine-btn.active {
+            border-color: #667eea;
+            background: #e7f0ff;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/">← Back to Home</a>
+        <h2>🔍 Smart Search & Productivity</h2>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <h1>AI-Powered Search & Study Tools</h1>
+            
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('web')">🌐 Web Search</button>
+                <button class="tab" onclick="switchTab('todo')">📝 To-Do List</button>
+                <button class="tab" onclick="switchTab('timer')">⏱️ Study Timer</button>
+            </div>
+
+            <!-- Web Search Tab -->
+            <div id="web-tab" class="tab-content active">
+                <div class="search-box">
+                    <input type="text" id="search-query" class="search-input" 
+                           placeholder="What do you want to search for?"
+                           onkeypress="if(event.key==='Enter') webSearch()">
+                    <button class="btn" onclick="webSearch()">🔍 Search</button>
+                    <button class="btn btn-secondary" onclick="getAISuggestions()">💡 AI Suggestions</button>
+                </div>
+
+                <div class="form-group">
+                    <label>Search Engine & Type:</label>
+                    <div class="engine-selector">
+                        <div class="engine-btn active" onclick="selectEngine('google', 'search')">
+                            🔍 Google Search
+                        </div>
+                        <div class="engine-btn" onclick="selectEngine('google', 'scholar')">
+                            🎓 Google Scholar
+                        </div>
+                        <div class="engine-btn" onclick="selectEngine('google', 'images')">
+                            🖼️ Google Images
+                        </div>
+                        <div class="engine-btn" onclick="selectEngine('google', 'videos')">
+                            📺 YouTube
+                        </div>
+                        <div class="engine-btn" onclick="selectEngine('bing', 'search')">
+                            🔍 Bing Search
+                        </div>
+                    </div>
+                </div>
+
+                <div id="suggestions-container"></div>
+            </div>
+
+            <!-- To-Do List Tab -->
+            <div id="todo-tab" class="tab-content">
+                <h2>📝 Task Manager</h2>
+                <p style="color: #666; margin-bottom: 20px;">Organize your study tasks and assignments</p>
+                
+                <div class="search-box">
+                    <input type="text" id="new-task" class="search-input" 
+                           placeholder="Add a new task..."
+                           onkeypress="if(event.key==='Enter') addTask()">
+                    <button class="btn" onclick="addTask()">➕ Add Task</button>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <button class="btn btn-secondary" onclick="loadTasks()">🔄 Refresh</button>
+                    <button class="btn btn-secondary" onclick="getTaskSuggestions()">💡 AI Prioritization</button>
+                </div>
+
+                <div id="tasks-container" style="margin-top: 20px;"></div>
+                <div id="task-suggestions"></div>
+            </div>
+
+            <!-- Study Timer Tab -->
+            <div id="timer-tab" class="tab-content">
+                <h2>⏱️ Pomodoro Study Timer</h2>
+                <p style="color: #666; margin-bottom: 20px;">Use the Pomodoro Technique to boost your productivity</p>
+
+                <div class="form-group">
+                    <label>Work Duration (minutes):</label>
+                    <select id="work-duration">
+                        <option value="15">15 minutes</option>
+                        <option value="25" selected>25 minutes (Classic Pomodoro)</option>
+                        <option value="30">30 minutes</option>
+                        <option value="45">45 minutes</option>
+                        <option value="50">50 minutes</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Break Duration (minutes):</label>
+                    <select id="break-duration">
+                        <option value="5" selected>5 minutes (Short Break)</option>
+                        <option value="10">10 minutes</option>
+                        <option value="15">15 minutes (Long Break)</option>
+                        <option value="20">20 minutes</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Number of Sessions:</label>
+                    <select id="sessions">
+                        <option value="1">1 session</option>
+                        <option value="2">2 sessions</option>
+                        <option value="3">3 sessions</option>
+                        <option value="4" selected>4 sessions (Full Pomodoro Cycle)</option>
+                        <option value="6">6 sessions</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-success" onclick="startTimer()">▶️ Start Study Session</button>
+
+                <div id="timer-display"></div>
+
+                <div class="suggestion-box" style="margin-top: 30px;">
+                    <h3>💡 Pomodoro Technique Tips:</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px; line-height: 2;">
+                        <li>✅ Eliminate all distractions before starting</li>
+                        <li>📱 Put your phone on silent or in another room</li>
+                        <li>🎯 Focus on ONE task during each session</li>
+                        <li>☕ Use breaks to rest your eyes and move around</li>
+                        <li>🏆 After 4 sessions, take a longer break (15-30 min)</li>
+                        <li>📊 Track what you accomplished in each session</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedEngine = 'google';
+        let selectedFeature = 'search';
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            document.getElementById(tab + '-tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function selectEngine(engine, feature) {
+            selectedEngine = engine;
+            selectedFeature = feature;
+            
+            document.querySelectorAll('.engine-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        async function getAISuggestions() {
+            const query = document.getElementById('search-query').value.trim();
+            
+            if (!query) {
+                alert('Please enter a search query');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/search/suggestions', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ query })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('suggestions-container').innerHTML = `
+                        <div class="suggestion-box">
+                            <h3>🤖 AI Search Suggestions</h3>
+                            ${data.suggestions}
+                            <hr style="margin: 15px 0;">
+                            <p><strong>Quick Links:</strong></p>
+                            <a href="${data.google_url}" target="_blank" class="btn" style="margin-top: 10px;">Google</a>
+                            <a href="${data.scholar_url}" target="_blank" class="btn btn-secondary" style="margin-top: 10px;">Scholar</a>
+                            <a href="${data.youtube_url}" target="_blank" class="btn btn-secondary" style="margin-top: 10px;">YouTube</a>
+                        </div>
+                    `;
+                } else {
+                    alert('Error getting suggestions');
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        async function webSearch() {
+            const query = document.getElementById('search-query').value.trim();
+            
+            if (!query) {
+                alert('Please enter a search query');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/search/web', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        query,
+                        engine: selectedEngine,
+                        feature: selectedFeature
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    window.open(data.url, '_blank');
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        async function loadTasks() {
+            try {
+                const response = await fetch('/api/todo/manage', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ action: 'list' })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayTasks(data.tasks);
+                }
+            } catch (error) {
+                console.error('Error loading tasks:', error);
+            }
+        }
+
+        function displayTasks(tasks) {
+            const container = document.getElementById('tasks-container');
+            
+            if (tasks.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">No tasks yet. Add some tasks to get started!</p>';
+                return;
+            }
+
+            container.innerHTML = tasks.map(task => `
+                <div class="todo-item ${task.completed ? 'completed' : ''}">
+                    <div>
+                        <strong>${task.task}</strong>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 5px;">
+                            Added: ${new Date(task.created_at).toLocaleString()}
+                        </div>
+                    </div>
+                    <div>
+                        ${!task.completed ? `<button class="btn btn-success" onclick="completeTask('${task.id}')">✓ Complete</button>` : ''}
+                        <button class="btn btn-danger" onclick="deleteTask('${task.id}')">🗑️ Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function addTask() {
+            const task = document.getElementById('new-task').value.trim();
+            
+            if (!task) {
+                alert('Please enter a task');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/todo/manage', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ action: 'add', task })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('new-task').value = '';
+                    loadTasks();
+                } else {
+                    alert('Error adding task');
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        async function completeTask(taskId) {
+            try {
+                const response = await fetch('/api/todo/manage', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ action: 'complete', task_id: taskId })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    loadTasks();
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        async function deleteTask(taskId) {
+            if (!confirm('Delete this task?')) return;
+
+            try {
+                const response = await fetch('/api/todo/manage', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ action: 'delete', task_id: taskId })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    loadTasks();
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        async function getTaskSuggestions() {
+            try {
+                const response = await fetch('/api/todo/manage', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ action: 'list' })
+                });
+
+                const data = await response.json();
+                
+                if (data.success && data.tasks.length > 0) {
+                    const suggestResponse = await fetch('/api/todo/suggestions', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({ tasks: data.tasks })
+                    });
+
+                    const suggestData = await suggestResponse.json();
+                    
+                    if (suggestData.success) {
+                        document.getElementById('task-suggestions').innerHTML = `
+                            <div class="suggestion-box" style="margin-top: 20px;">
+                                <h3>💡 AI Task Prioritization</h3>
+                                ${suggestData.suggestions}
+                            </div>
+                        `;
+                    }
+                } else {
+                    alert('Add some tasks first to get AI suggestions!');
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        async function startTimer() {
+            const workMinutes = document.getElementById('work-duration').value;
+            const breakMinutes = document.getElementById('break-duration').value;
+            const sessions = document.getElementById('sessions').value;
+
+            document.getElementById('timer-display').innerHTML = `
+                <div class="timer-display">
+                    <h2>⏱️</h2>
+                    <h2>Study Timer Started!</h2>
+                    <p style="font-size: 1.2em; margin: 20px 0;">
+                        ${sessions} session(s) × ${workMinutes} min work + ${breakMinutes} min break
+                    </p>
+                    <hr style="margin: 20px 0; border-color: rgba(255,255,255,0.3);">
+                    <p style="margin-top: 20px;">💡 <strong>Tip:</strong> Use a dedicated timer app for accurate timing</p>
+                    <p style="margin-top: 10px;">
+                        Recommended: 
+                        <a href="https://pomofocus.io" target="_blank" style="color: white; text-decoration: underline;">Pomofocus.io</a>
+                        or your phone's timer
+                    </p>
+                </div>
+            `;
+        }
+
+        // Load tasks when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTasks();
+        });
+    </script>
+</body>
+</html>

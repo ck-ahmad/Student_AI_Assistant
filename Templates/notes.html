@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Notes - Student AI Assistant</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+        
+        .navbar a { color: white; text-decoration: none; font-size: 1.1em; }
+        
+        .container { max-width: 1000px; margin: 30px auto; padding: 20px; }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .ai-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.6em;
+            font-weight: normal;
+        }
+        
+        .form-group { margin-bottom: 20px; }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        textarea { min-height: 120px; resize: vertical; }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary { background: #6c757d; }
+        .btn-danger { background: #dc3545; }
+        .btn-ai { background: linear-gradient(135deg, #667eea, #764ba2); }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .notes-list { margin-top: 20px; }
+        
+        .note-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        
+        .note-item:hover { transform: translateX(5px); }
+        
+        .note-text {
+            flex: 1;
+            padding-right: 15px;
+            line-height: 1.6;
+        }
+        
+        .note-actions button {
+            margin-left: 5px;
+            padding: 8px 15px;
+            font-size: 0.9em;
+        }
+        
+        .message {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .ai-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .ai-response {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #667eea;
+            white-space: pre-wrap;
+            line-height: 1.8;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/">← Back to Home</a>
+        <h2>📝 AI-Powered Smart Notes</h2>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <h1>
+                Manage Your Notes 
+                <span class="ai-badge">🤖 AI Powered by Gemini</span>
+            </h1>
+            
+            <div id="message" class="message"></div>
+
+            <div class="form-group">
+                <label for="topic">📚 Topic Name:</label>
+                <input type="text" id="topic" placeholder="Enter topic (e.g., Python, Biology, History)">
+            </div>
+
+            <div class="form-group">
+                <label for="note">✍️ Note Content:</label>
+                <textarea id="note" placeholder="Enter your note here..."></textarea>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="useAI" checked>
+                <label for="useAI" style="margin: 0;">🤖 Enhance with AI (improve grammar, formatting, and clarity)</label>
+            </div>
+
+            <div class="button-group">
+                <button class="btn" onclick="addNote()">✅ Add Note</button>
+                <button class="btn btn-secondary" onclick="viewNotes()">👁️ View Notes</button>
+                <button class="btn btn-secondary" onclick="searchNotes()">🔍 Search</button>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>AI is working...</p>
+            </div>
+        </div>
+
+        <div class="card" id="notesDisplay" style="display: none;">
+            <h2>Your Notes</h2>
+            <div id="notesList" class="notes-list"></div>
+        </div>
+
+        <div class="card ai-section">
+            <h2>🤖 AI Features</h2>
+            <div class="button-group">
+                <button class="btn btn-ai" onclick="summarizeNotes()">📋 Summarize All Notes</button>
+                <button class="btn btn-ai" onclick="askAI()">💬 Ask AI About Notes</button>
+                <button class="btn btn-ai" onclick="generateFlashcards()">📇 Generate Flashcards</button>
+            </div>
+            <div id="aiResponse"></div>
+        </div>
+    </div>
+
+    <script>
+        function showMessage(text, type) {
+            const msg = document.getElementById('message');
+            msg.textContent = text;
+            msg.className = `message ${type}`;
+            msg.style.display = 'block';
+            setTimeout(() => msg.style.display = 'none', 5000);
+        }
+
+        async function addNote() {
+            const topic = document.getElementById('topic').value.trim();
+            const note = document.getElementById('note').value.trim();
+            const useAI = document.getElementById('useAI').checked;
+
+            if (!topic || !note) {
+                showMessage('Please enter both topic and note', 'error');
+                return;
+            }
+
+            document.getElementById('loading').style.display = 'block';
+
+            try {
+                const response = await fetch('/api/notes/create', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({topic, note, use_ai: useAI})
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    showMessage(data.message, 'success');
+                    document.getElementById('note').value = '';
+                    if (useAI && data.enhanced_note) {
+                        showMessage('AI Enhanced: ' + data.enhanced_note.substring(0, 100) + '...', 'success');
+                    }
+                    viewNotes();
+                } else {
+                    showMessage(data.message, 'error');
+                }
+            } catch (error) {
+                showMessage('Error adding note: ' + error.message, 'error');
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        async function viewNotes() {
+            const topic = document.getElementById('topic').value.trim();
+
+            if (!topic) {
+                showMessage('Please enter a topic name', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/notes/view', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({topic})
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayNotes(data.notes);
+                }
+            } catch (error) {
+                showMessage('Error viewing notes: ' + error.message, 'error');
+            }
+        }
+
+        function displayNotes(notes) {
+            const display = document.getElementById('notesDisplay');
+            const list = document.getElementById('notesList');
+
+            if (notes.length === 0) {
+                list.innerHTML = '<p style="text-align: center; color: #666;">No notes found for this topic.</p>';
+            } else {
+                list.innerHTML = notes.map(note => `
+                    <div class="note-item">
+                        <div class="note-text">${note.text}</div>
+                        <div class="note-actions">
+                            <button class="btn" onclick="editNote(${note.id})">✏️ Edit</button>
+                            <button class="btn btn-danger" onclick="deleteNote(${note.id})">🗑️ Delete</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            display.style.display = 'block';
+        }
+
+        async function deleteNote(id) {
+            const topic = document.getElementById('topic').value.trim();
+
+            if (!confirm('Are you sure you want to delete this note?')) return;
+
+            try {
+                const response = await fetch('/api/notes/delete', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({topic, note_id: id})
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    showMessage(data.message, 'success');
+                    viewNotes();
+                } else {
+                    showMessage(data.message, 'error');
+                }
+            } catch (error) {
+                showMessage('Error deleting note: ' + error.message, 'error');
+            }
+        }
+
+        async function editNote(id) {
+            const newText = prompt('Enter the updated note:');
+            if (!newText) return;
+
+            const topic = document.getElementById('topic').value.trim();
+            const useAI = confirm('Enhance with AI?');
+
+            document.getElementById('loading').style.display = 'block';
+
+            try {
+                const response = await fetch('/api/notes/edit', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({topic, note_id: id, new_text: newText, use_ai: useAI})
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    showMessage(data.message, 'success');
+                    viewNotes();
+                } else {
+                    showMessage(data.message, 'error');
+                }
+            } catch (error) {
+                showMessage('Error editing note: ' + error.message, 'error');
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        async function searchNotes() {
+            const topic = document.getElementById('topic').value.trim();
+            const keyword = prompt('Enter keyword to search:');
+
+            if (!topic || !keyword) {
+                showMessage('Please enter both topic and keyword', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/notes/search', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({topic, keyword})
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayNotes(data.notes);
+                    showMessage(`Found ${data.notes.length} note(s)`, 'success');
+                }
+            } catch (error) {
+                showMessage('Error searching notes: ' + error.message, 'error');
+            }
+        }
+
+        async function summarizeNotes() {
+            const topic = document.getElementById('topic').value.trim();
+
+            if (!topic) {
+                showMessage('Please enter a topic name', 'error');
+                return;
+            }
+
+            document.getElementById('loading').style.display = 'block';
+
+            try {
+                const response = await fetch('/api/notes/summarize', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({topic})
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('aiResponse').innerHTML = `
+                        <div class="ai-response">
+                            <h3>📋 Summary</h3>
+                            ${data.summary}
+                        </div>
+                    `;
+                    showMessage('Summary generated!', 'success');
+                } else {
+                    showMessage(data.message, 'error');
+                }
+            } catch (error) {
+                showMessage('Error: ' + error.message, 'error');
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        async function askAI() {
+            const topic = document.getElementById('topic').value.trim();
+            const question = prompt('Ask a question about your notes:');
+
+            if (!topic || !question) {
+                showMessage('Please enter both topic and question', 'error');
+                return;
+            }
+
+            document.getElementById('loading').style.display = 'block';
+
+            try {
+                const response = await fetch('/api/notes/ask-ai', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({topic, question})
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('aiResponse').innerHTML = `
+                        <div class="ai-response">
+                            <h3>💬 AI Answer</h3>
+                            <p><strong>Q:</strong> ${question}</p>
+                            <p><strong>A:</strong> ${data.answer}</p>
+                        </div>
+                    `;
+                    showMessage('AI answered your question!', 'success');
+                } else {
+                    showMessage(data.message, 'error');
+                }
+            } catch (error) {
+                showMessage('Error: ' + error.message, 'error');
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        async function generateFlashcards() {
+            const topic = document.getElementById('topic').value.trim();
+
+            if (!topic) {
+                showMessage('Please enter a topic name', 'error');
+                return;
+            }
+
+            document.getElementById('loading').style.display = 'block';
+
+            try {
+                const response = await fetch('/api/notes/flashcards', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({topic})
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    const flashcardsHTML = data.flashcards.map((card, i) => `
+                        <div style="background: white; padding: 15px; margin: 10px 0; border-radius: 8px;">
+                            <strong>Card ${i + 1}</strong><br>
+                            <strong>Front:</strong> ${card.front}<br>
+                            <strong>Back:</strong> ${card.back}
+                        </div>
+                    `).join('');
+                    
+                    document.getElementById('aiResponse').innerHTML = `
+                        <div class="ai-response">
+                            <h3>📇 Flashcards Generated</h3>
+                            ${flashcardsHTML}
+                        </div>
+                    `;
+                    showMessage('Flashcards generated!', 'success');
+                } else {
+                    showMessage(data.message, 'error');
+                }
+            } catch (error) {
+                showMessage('Error: ' + error.message, 'error');
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Tracker - Student AI Assistant</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+        
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        
+        h1 { color: #667eea; margin-bottom: 10px; }
+        
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+        
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 10px;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .result-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            line-height: 1.8;
+        }
+        
+        .category-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .category-btn {
+            padding: 15px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .category-btn:hover {
+            border-color: #667eea;
+            background: #e7f0ff;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/">← Back to Home</a>
+        <h2>🏥 Health Tracker</h2>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <h1>AI Health Information Assistant</h1>
+            
+            <div class="warning">
+                <strong>⚠️ Important Disclaimer:</strong> This tool provides educational information only and is NOT medical advice. Always consult qualified healthcare professionals for medical concerns.
+            </div>
+
+            <div class="form-group">
+                <label>What do you need help with?</label>
+                <div class="category-buttons">
+                    <div class="category-btn" onclick="showSection('symptoms')">
+                        🩺 Analyze Symptoms
+                    </div>
+                    <div class="category-btn" onclick="showSection('search')">
+                        🔍 Search Health Info
+                    </div>
+                    <div class="category-btn" onclick="showSection('wellness')">
+                        💪 Wellness Tips
+                    </div>
+                </div>
+            </div>
+
+            <!-- Symptoms Section -->
+            <div id="symptoms-section" style="display: none;">
+                <h3>Symptom Analysis</h3>
+                <div class="form-group">
+                    <label>Describe your symptoms:</label>
+                    <textarea id="symptoms" rows="4" placeholder="Describe what you're experiencing..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Age (optional):</label>
+                    <input type="number" id="age" placeholder="Your age">
+                </div>
+                <div class="form-group">
+                    <label>Gender (optional):</label>
+                    <select id="gender">
+                        <option value="">Select</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="analyzeSymptoms()">🤖 Analyze with AI</button>
+            </div>
+
+            <!-- Search Section -->
+            <div id="search-section" style="display: none;">
+                <h3>Search Health Information</h3>
+                <div class="form-group">
+                    <label>What would you like to know about?</label>
+                    <input type="text" id="search-query" placeholder="e.g., diabetes, common cold, stress">
+                </div>
+                <button class="btn" onclick="searchHealth()">🔍 Search</button>
+            </div>
+
+            <!-- Wellness Section -->
+            <div id="wellness-section" style="display: none;">
+                <h3>Wellness Tips</h3>
+                <div class="form-group">
+                    <label>Choose a category:</label>
+                    <select id="wellness-category">
+                        <option value="general">General Wellness</option>
+                        <option value="nutrition">Nutrition & Diet</option>
+                        <option value="exercise">Exercise & Fitness</option>
+                        <option value="mental">Mental Health</option>
+                        <option value="sleep">Sleep Hygiene</option>
+                        <option value="hydration">Hydration</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="getWellnessTips()">💡 Get Tips</button>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Getting AI-powered information...</p>
+            </div>
+
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(section) {
+            document.querySelectorAll('[id$="-section"]').forEach(el => {
+                el.style.display = 'none';
+            });
+            document.getElementById(section + '-section').style.display = 'block';
+            document.getElementById('result').innerHTML = '';
+        }
+
+        async function analyzeSymptoms() {
+            const symptoms = document.getElementById('symptoms').value.trim();
+            const age = document.getElementById('age').value;
+            const gender = document.getElementById('gender').value;
+
+            if (!symptoms) {
+                alert('Please describe your symptoms');
+                return;
+            }
+
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('result').innerHTML = '';
+
+            try {
+                const response = await fetch('/api/health/analyze', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ symptoms, age, gender })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    document.getElementById('result').innerHTML = `
+                        <div class="result-box">
+                            <h3>🤖 AI Analysis:</h3>
+                            ${data.analysis}
+                            <hr style="margin: 20px 0;">
+                            <p><strong>For more information:</strong></p>
+                            <a href="${data.webmd_url}" target="_blank" class="btn">🔗 Open WebMD</a>
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('result').innerHTML = `
+                        <div class="result-box" style="border-left-color: #dc3545;">
+                            <p>❌ Error: ${data.message}</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('result').innerHTML = `
+                    <div class="result-box" style="border-left-color: #dc3545;">
+                        <p>❌ Error: ${error.message}</p>
+                    </div>
+                `;
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        async function searchHealth() {
+            const query = document.getElementById('search-query').value.trim();
+
+            if (!query) {
+                alert('Please enter a search query');
+                return;
+            }
+
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('result').innerHTML = '';
+
+            try {
+                const response = await fetch('/api/health/search', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ query })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    document.getElementById('result').innerHTML = `
+                        <div class="result-box">
+                            <h3>📚 Information about: ${data.query}</h3>
+                            ${data.info}
+                            <hr style="margin: 20px 0;">
+                            <p><strong>Learn more:</strong></p>
+                            <a href="${data.webmd_url}" target="_blank" class="btn">WebMD</a>
+                            <a href="${data.mayo_url}" target="_blank" class="btn btn-secondary">Mayo Clinic</a>
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('result').innerHTML = `
+                        <div class="result-box" style="border-left-color: #dc3545;">
+                            <p>❌ Error: ${data.message}</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('result').innerHTML = `
+                    <div class="result-box" style="border-left-color: #dc3545;">
+                        <p>❌ Error: ${error.message}</p>
+                    </div>
+                `;
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        async function getWellnessTips() {
+            const category = document.getElementById('wellness-category').value;
+
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('result').innerHTML = '';
+
+            try {
+                const response = await fetch('/api/health/wellness', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ category })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    document.getElementById('result').innerHTML = `
+                        <div class="result-box">
+                            <h3>💡 Wellness Tips - ${data.category.charAt(0).toUpperCase() + data.category.slice(1)}</h3>
+                            ${data.tips}
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('result').innerHTML = `
+                        <div class="result-box" style="border-left-color: #dc3545;">
+                            <p>❌ Error: ${data.message}</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('result').innerHTML = `
+                    <div class="result-box" style="border-left-color: #dc3545;">
+                        <p>❌ Error: ${error.message}</p>
+                    </div>
+                `;
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

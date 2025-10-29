@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Generator - Student AI Assistant</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+        
+        .navbar a { color: white; text-decoration: none; font-size: 1.1em; }
+        
+        .container { max-width: 1000px; margin: 30px auto; padding: 20px; }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        
+        h1 { color: #667eea; margin-bottom: 10px; }
+        
+        .form-group { margin-bottom: 20px; }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 10px;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary { background: #6c757d; }
+        .btn-success { background: #28a745; }
+        .btn-danger { background: #dc3545; }
+        
+        .quiz-question {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .question-number {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .question-type {
+            background: #e7f0ff;
+            color: #667eea;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        
+        .options {
+            margin-top: 15px;
+        }
+        
+        .option {
+            background: white;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        .option.selected {
+            border-color: #667eea;
+            background: #e7f0ff;
+        }
+        
+        .option.correct {
+            border-color: #28a745;
+            background: #d4edda;
+        }
+        
+        .option.incorrect {
+            border-color: #dc3545;
+            background: #f8d7da;
+        }
+        
+        .feedback-box {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        .score-display {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .score-display h2 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/">← Back to Home</a>
+        <h2>🎯 Quiz Generator</h2>
+    </nav>
+
+    <div class="container">
+        <!-- Setup Section -->
+        <div id="setup-section" class="card">
+            <h1>Generate Your Quiz</h1>
+            <p style="color: #666; margin-bottom: 20px;">Create AI-powered quizzes from your notes or any topic</p>
+
+            <div class="form-group">
+                <label>Quiz Source:</label>
+                <select id="quiz-source">
+                    <option value="notes">From My Notes</option>
+                    <option value="topic">From Any Topic</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Topic:</label>
+                <input type="text" id="topic" placeholder="e.g., Python Programming, Biology, History">
+            </div>
+
+            <div class="form-group">
+                <label>Number of Questions:</label>
+                <select id="num-questions">
+                    <option value="5">5 Questions</option>
+                    <option value="10" selected>10 Questions</option>
+                    <option value="15">15 Questions</option>
+                    <option value="20">20 Questions</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Difficulty:</label>
+                <select id="difficulty">
+                    <option value="easy">Easy</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Question Type:</label>
+                <select id="quiz-type">
+                    <option value="mixed" selected>Mixed (All Types)</option>
+                    <option value="mcq">Multiple Choice Only</option>
+                    <option value="tf">True/False Only</option>
+                    <option value="short">Short Answer Only</option>
+                </select>
+            </div>
+
+            <button class="btn" onclick="generateQuiz()">🎲 Generate Quiz</button>
+        </div>
+
+        <!-- Loading Section -->
+        <div id="loading-section" class="loading">
+            <div class="spinner"></div>
+            <h3>🤖 AI is generating your quiz...</h3>
+            <p>This may take a few moments</p>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="quiz-section" class="hidden">
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h1 id="quiz-title">Quiz</h1>
+                    <button class="btn btn-secondary" onclick="backToSetup()">← New Quiz</button>
+                </div>
+                
+                <div id="questions-container"></div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn btn-success" onclick="submitQuiz()">✅ Submit Quiz</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results-section" class="hidden">
+            <div class="card">
+                <div id="score-container"></div>
+                
+                <h2>📋 Detailed Results</h2>
+                <div id="results-container"></div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn" onclick="backToSetup()">🔄 Take Another Quiz</button>
+                    <button class="btn btn-secondary" onclick="reviewQuiz()">👁️ Review Answers</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentQuiz = null;
+        let userAnswers = [];
+
+        async function generateQuiz() {
+            const source = document.getElementById('quiz-source').value;
+            const topic = document.getElementById('topic').value.trim();
+            const numQuestions = document.getElementById('num-questions').value;
+            const difficulty = document.getElementById('difficulty').value;
+            const quizType = document.getElementById('quiz-type').value;
+
+            if (!topic) {
+                alert('Please enter a topic');
+                return;
+            }
+
+            document.getElementById('setup-section').classList.add('hidden');
+            document.getElementById('loading-section').style.display = 'block';
+
+            try {
+                const endpoint = source === 'notes' ? '/api/quiz/generate-from-notes' : '/api/quiz/generate-from-topic';
+                
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        topic,
+                        num_questions: parseInt(numQuestions),
+                        difficulty,
+                        quiz_type: quizType
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    currentQuiz = data;
+                    userAnswers = new Array(data.questions.length).fill('');
+                    displayQuiz(data);
+                } else {
+                    alert('Error: ' + data.message);
+                    backToSetup();
+                }
+            } catch (error) {
+                alert('Error generating quiz: ' + error.message);
+                backToSetup();
+            } finally {
+                document.getElementById('loading-section').style.display = 'none';
+            }
+        }
+
+        function displayQuiz(quiz) {
+            document.getElementById('quiz-title').textContent = `Quiz: ${quiz.topic}`;
+            const container = document.getElementById('questions-container');
+            container.innerHTML = '';
+
+            quiz.questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'quiz-question';
+                questionDiv.innerHTML = `
+                    <div class="question-header">
+                        <span class="question-number">Q${index + 1}</span>
+                        <span class="question-type">${q.type || 'SHORT'}</span>
+                    </div>
+                    <h3>${q.question}</h3>
+                    ${generateAnswerInput(q, index)}
+                `;
+                container.appendChild(questionDiv);
+            });
+
+            document.getElementById('quiz-section').classList.remove('hidden');
+        }
+
+        function generateAnswerInput(question, index) {
+            const type = question.type || 'SHORT';
+            
+            if (type === 'MCQ' && question.options) {
+                return `
+                    <div class="options">
+                        ${question.options.map((opt, i) => `
+                            <div class="option" onclick="selectOption(${index}, '${opt.replace(/'/g, "\\'")}')">
+                                ${String.fromCharCode(65 + i)}. ${opt}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } else if (type === 'TF') {
+                return `
+                    <div class="options">
+                        <div class="option" onclick="selectOption(${index}, 'True')">✓ True</div>
+                        <div class="option" onclick="selectOption(${index}, 'False')">✗ False</div>
+                    </div>
+                `;
+            } else {
+                return `
+                    <div style="margin-top: 15px;">
+                        <input type="text" id="answer-${index}" 
+                               placeholder="Type your answer here..."
+                               onchange="userAnswers[${index}] = this.value"
+                               style="width: 100%;">
+                    </div>
+                `;
+            }
+        }
+
+        function selectOption(questionIndex, answer) {
+            userAnswers[questionIndex] = answer;
+            
+            const question = document.querySelectorAll('.quiz-question')[questionIndex];
+            const options = question.querySelectorAll('.option');
+            
+            options.forEach(opt => {
+                opt.classList.remove('selected');
+                if (opt.textContent.includes(answer)) {
+                    opt.classList.add('selected');
+                }
+            });
+        }
+
+        async function submitQuiz() {
+            // Check if all questions are answered
+            const unanswered = userAnswers.findIndex((a, i) => !a && i < currentQuiz.questions.length);
+            if (unanswered !== -1) {
+                if (!confirm(`Question ${unanswered + 1} is unanswered. Submit anyway?`)) {
+                    return;
+                }
+            }
+
+            document.getElementById('loading-section').style.display = 'block';
+            document.getElementById('quiz-section').classList.add('hidden');
+
+            try {
+                const response = await fetch('/api/quiz/evaluate', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        topic: currentQuiz.topic,
+                        questions: currentQuiz.questions,
+                        answers: userAnswers
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    displayResults(data);
+                } else {
+                    alert('Error evaluating quiz: ' + data.message);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            } finally {
+                document.getElementById('loading-section').style.display = 'none';
+            }
+        }
+
+        function displayResults(results) {
+            const scoreContainer = document.getElementById('score-container');
+            const percentage = results.percentage;
+            const emoji = percentage >= 90 ? '🎉' : percentage >= 70 ? '👍' : percentage >= 50 ? '📚' : '💪';
+            
+            scoreContainer.innerHTML = `
+                <div class="score-display">
+                    <h2>${emoji}</h2>
+                    <h2>${results.score} / ${results.total}</h2>
+                    <h3>${percentage.toFixed(1)}%</h3>
+                    <p>${percentage >= 90 ? 'Excellent!' : percentage >= 70 ? 'Good Job!' : percentage >= 50 ? 'Keep Practicing!' : 'Review & Try Again!'}</p>
+                </div>
+            `;
+
+            const resultsContainer = document.getElementById('results-container');
+            resultsContainer.innerHTML = results.results.map((r, i) => `
+                <div class="quiz-question ${r.is_correct ? 'correct' : 'incorrect'}">
+                    <div class="question-header">
+                        <span class="question-number">Q${r.question_num}</span>
+                        <span>${r.is_correct ? '✅ Correct' : '❌ Incorrect'}</span>
+                    </div>
+                    <h3>${r.question}</h3>
+                    <p><strong>Your Answer:</strong> ${r.user_answer || '(No answer)'}</p>
+                    ${!r.is_correct ? `<p><strong>Correct Answer:</strong> ${r.correct_answer}</p>` : ''}
+                    <div class="feedback-box">
+                        <strong>💡 Feedback:</strong><br>
+                        ${r.feedback}
+                    </div>
+                </div>
+            `).join('');
+
+            if (results.overall_feedback) {
+                resultsContainer.innerHTML += `
+                    <div class="card" style="background: #e7f0ff; margin-top: 20px;">
+                        <h3>📊 Overall Performance Feedback</h3>
+                        <p style="white-space: pre-wrap; line-height: 1.8;">${results.overall_feedback}</p>
+                    </div>
+                `;
+            }
+
+            document.getElementById('results-section').classList.remove('hidden');
+        }
+
+        function backToSetup() {
+            document.getElementById('setup-section').classList.remove('hidden');
+            document.getElementById('quiz-section').classList.add('hidden');
+            document.getElementById('results-section').classList.add('hidden');
+            currentQuiz = null;
+            userAnswers = [];
+        }
+
+        function reviewQuiz() {
+            document.getElementById('results-section').classList.add('hidden');
+            document.getElementById('quiz-section').classList.remove('hidden');
+            
+            // Highlight correct/incorrect answers
+            const questions = document.querySelectorAll('.quiz-question');
+            questions.forEach((q, i) => {
+                const options = q.querySelectorAll('.option');
+                options.forEach(opt => {
+                    const text = opt.textContent;
+                    if (text.includes(currentQuiz.questions[i].answer)) {
+                        opt.classList.add('correct');
+                    } else if (text.includes(userAnswers[i])) {
+                        opt.classList.add('incorrect');
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
