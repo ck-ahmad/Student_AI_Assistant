@@ -736,6 +736,11 @@ Solution:
 This project is licensed under the MIT License - see the [LICENSE](Lisence.md) file for details.
 
 ---
+## 🐛  PROBLEMS & FIXES LOG  ✅
+
+The Problems I faced wile developing this project are in [Problems](Problem.md) file with how I solved them.
+
+---
 
 ## 📞 Contact
 
@@ -754,7 +759,6 @@ This project is licensed under the MIT License - see the [LICENSE](Lisence.md) f
 
 ### Project Links
 - 🌐 **Project Repository**: https://github.com/ck-ahmad/Student_AI_Assistant
-- 📝 **Problems **: https://github.com/ck-ahmad/Student_AI_Assistant/Problem.md
 - 📜 **Report Problem**: ahmadleo498@gmail.com
 
 ---
