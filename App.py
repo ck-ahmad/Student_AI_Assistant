@@ -35,8 +35,8 @@ for directory in ['uploads', 'notes', 'drive_files', 'static/css', 'static/js', 
     os.makedirs(directory, exist_ok=True)
 
 # Load API keys from environment
-#GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', 'AIzaSyCITRN8UGw89RDy3F_F6Tw78ikRZmUMVD8')
-GEMINI_API_KEY ='AIzaSyCITRN8UGw89RDy3F_F6Tw78ikRZmUMVD8'
+#GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', 'Your Key')
+GEMINI_API_KEY ='Your API Key'
 # Cloudinary config for file uploads
 # CLOUDINARY_CONFIG = {
 #     'cloud_name': os.getenv('CLOUDINARY_CLOUD_NAME', ''),
@@ -45,13 +45,10 @@ GEMINI_API_KEY ='AIzaSyCITRN8UGw89RDy3F_F6Tw78ikRZmUMVD8'
 # }
 
 CLOUDINARY_CONFIG = {
-    'cloud_name': os.getenv('CLOUDINARY_CLOUD_NAME', 'dqfghgjg3'),
-    'api_key': os.getenv('CLOUDINARY_API_KEY', '436773261451992'),
-    'api_secret': os.getenv('CLOUDINARY_API_SECRET', 'Zv05IdYErGS-ObTmfH1MbCN70vs')
+    'cloud_name': os.getenv('CLOUDINARY_CLOUD_NAME', 'Your Name'),
+    'api_key': os.getenv('CLOUDINARY_API_KEY', 'Your API Key'),
+    'api_secret': os.getenv('CLOUDINARY_API_SECRET', 'Your Secrete Key')
 }
-# CLOUDINARY_API_KEY = '436773261451992'
-# CLOUDINARY_CLOUD_NAME = 'dqfghgjg3'
-# CLOUDINARY_API_SECRET = 'Zv05IdYErGS-ObTmfH1MbCN70vs'
 # Initialize AI modules
 try:
     notes_ai = NotesAI(GEMINI_API_KEY)
@@ -411,4 +408,5 @@ if __name__ == '__main__':
     print(f"📱 Or from network: http://0.0.0.0:5000")
     print("="*60 + "\n")
     
+
     app.run(debug=True, host='0.0.0.0', port=5000)
