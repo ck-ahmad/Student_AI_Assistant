@@ -1,5 +1,7 @@
 # 🎓 Student AI Assistant
 
+<img width="952" height="446" alt="image" src="https://github.com/user-attachments/assets/a362f336-5d11-4bbb-9c91-c7191599be25" />
+
 > **Your Complete Academic Companion Powered by Google Gemini 2.5 Pro**
 
 A comprehensive AI-powered web application designed specifically for students, featuring smart notes, file management, health tracking, quiz generation, and intelligent search capabilities.
@@ -14,7 +16,7 @@ A comprehensive AI-powered web application designed specifically for students, f
 
 ## 👥 Development Team
 
-### **Safia Liaqat** - Frontend Developer (React)
+### **Safia Liaqat** - Frontend Developer (Under process as Safia will enhance fronet end by React)
 - 🎨 **Responsible for**: Complete Frontend Architecture & UI/UX Design
 - ⚛️ **Tech Stack**: React.js, Modern CSS, Responsive Design
 - 💡 **Key Contributions**:
