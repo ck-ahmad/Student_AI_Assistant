@@ -114,7 +114,7 @@ A comprehensive AI-powered web application designed specifically for students, f
 │                Developed by: Ahmad                       │
 ├─────────────────────────────────────────────────────────┤
 │  • Flask REST API        • AI Integration               │
-│  • Gemini 1.5 Flash      • Data Processing              │
+│  • Gemini 2.5 pro        • Data Processing              │
 │  • File Management       • Authentication               │
 └────────────────────┬────────────────────────────────────┘
                      │
