@@ -691,7 +691,7 @@ Solution:
 
 ### Ahmad - Backend Mastery
 ✅ Complete Flask REST API  
-✅ Gemini 1.5 Flash AI integration  
+✅ Gemini 2.5 Pro AI integration  
 ✅ All 5 AI-powered modules  
 ✅ File upload and cloud storage  
 ✅ Database and security implementation  
@@ -733,7 +733,7 @@ Solution:
 
 ## 📜 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](Lisence.md) file for details.
 
 ---
 
@@ -753,8 +753,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - 🎯 Expertise: Python, Flask, AI Integration, Backend Architecture
 
 ### Project Links
-- 🌐 **Project Repository**: https://github.com/yourusername/student-ai-assistant
-- 📝 **Report Issues**: https://github.com/yourusername/student-ai-assistant/problems.md
+- 🌐 **Project Repository**: https://github.com/ck-ahmad/Student_AI_Assistant
+- 📝 **Problems **: https://github.com/ck-ahmad/Student_AI_Assistant/Markdowns Details/Problems.md
+- 📜 **Report Problem**: ahmadleo498@gmail.com
 
 ---
 
