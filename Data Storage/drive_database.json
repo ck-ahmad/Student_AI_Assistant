@@ -1,0 +1,41 @@
+{
+  "1": {
+    "filename": "Cormen_Algorithms_Slides.pdf",
+    "url": "https://res.cloudinary.com/dqfghgjg3/image/upload/v1761768724/student_ai/5/CS/CS2005/Cormen_Algorithms_Slides.pdf",
+    "semester": 5,
+    "degree": "CS",
+    "subject": "CS2005",
+    "description": "",
+    "uploaded_at": "2025-10-30T11:08:53.615938",
+    "file_type": "pdf",
+    "size": 5792281,
+    "is_cloud": true,
+    "is_external": false
+  },
+  "2": {
+    "filename": "SE_1.docx",
+    "url": "https://res.cloudinary.com/dqfghgjg3/raw/upload/v1761804675/student_ai/5/CS/Assisgment_3_SE/SE_1.docx",
+    "semester": 5,
+    "degree": "CS",
+    "subject": "ASSISGMENT 3 SE",
+    "description": "",
+    "uploaded_at": "2025-10-30T11:11:15.112030",
+    "file_type": "unknown",
+    "size": 12992,
+    "is_cloud": true,
+    "is_external": false
+  },
+  "3": {
+    "filename": "Cover_Page.docx",
+    "url": "https://res.cloudinary.com/dqfghgjg3/raw/upload/v1761804754/student_ai/4/CS/Cover_Page/Cover_Page.docx",
+    "semester": 4,
+    "degree": "CS",
+    "subject": "COVER PAGE",
+    "description": "",
+    "uploaded_at": "2025-10-30T11:12:33.340471",
+    "file_type": "unknown",
+    "size": 11862,
+    "is_cloud": true,
+    "is_external": false
+  }
+}
