@@ -11,6 +11,8 @@ A comprehensive AI-powered web application designed specifically for students, f
 [![React](https://img.shields.io/badge/React-18+-61DAFB.svg)](https://reactjs.org/)
 [![Gemini](https://img.shields.io/badge/Gemini-2.5%20Pro-orange.svg)](https://ai.google.dev/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![YouTube Video](https://img.shields.io/badge/Demo-YouTube-red?logo=youtube&logoColor=white)](https://youtu.be/G5eEwg4ChUo?si=MJOkSHZ7AfssjGlC)
+
 
 ---
 
