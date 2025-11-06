@@ -45,8 +45,7 @@ for directory in ['uploads', 'notes', 'drive_files', 'static/css', 'static/js', 
 
 # Load API keys from environment
 #GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', 'Your Key')
-env_path = Path(__file__).resolve().parent / "Configuration" / ".env"
-load_dotenv(dotenv_path=env_path)
+
 
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")

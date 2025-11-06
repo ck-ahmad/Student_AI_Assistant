@@ -644,3 +644,27 @@
 2025-11-06 17:00:44,806 - INFO - 127.0.0.1 - - [06/Nov/2025 17:00:44] "POST /api/drive/list HTTP/1.1" 200 -
 2025-11-06 17:00:53,380 - INFO - 127.0.0.1 - - [06/Nov/2025 17:00:53] "OPTIONS /api/drive/list HTTP/1.1" 200 -
 2025-11-06 17:00:53,694 - INFO - 127.0.0.1 - - [06/Nov/2025 17:00:53] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-06 17:30:05,499 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.7:5000
+2025-11-06 17:30:05,500 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-06 17:30:05,503 - INFO -  * Restarting with stat
+2025-11-06 17:30:07,900 - WARNING -  * Debugger is active!
+2025-11-06 17:30:07,910 - INFO -  * Debugger PIN: 705-186-000
+2025-11-06 17:36:17,379 - INFO -  * Detected change in 'D:\\react\\Student Assistant\\Student_AI_Assistant\\app.py', reloading
+2025-11-06 17:36:17,621 - INFO -  * Restarting with stat
+2025-11-06 17:36:20,249 - WARNING -  * Debugger is active!
+2025-11-06 17:36:20,254 - INFO -  * Debugger PIN: 705-186-000
+2025-11-06 17:36:33,215 - INFO -  * Detected change in 'D:\\react\\Student Assistant\\Student_AI_Assistant\\app.py', reloading
+2025-11-06 17:36:33,499 - INFO -  * Restarting with stat
+2025-11-06 17:36:35,886 - WARNING -  * Debugger is active!
+2025-11-06 17:36:35,892 - INFO -  * Debugger PIN: 705-186-000
+2025-11-06 17:36:58,096 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.7:5000
+2025-11-06 17:36:58,096 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-06 17:36:58,099 - INFO -  * Restarting with stat
+2025-11-06 17:37:00,302 - WARNING -  * Debugger is active!
+2025-11-06 17:37:00,308 - INFO -  * Debugger PIN: 705-186-000
