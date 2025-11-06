@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto+Mono:wght@400&display=swap');
+@import './variable.css';
+
+/* 🔄 Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 🌐 Global defaults */
+body {
+  font-family: var(--font-main);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  min-height: 100vh;
+  
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  border: 1px solid #d1d5db;
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* 🧱 Layout Helpers */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+/* 🔘 Reusable Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.shadow {
+  box-shadow: var(--shadow-light);
+}
+
+.rounded {
+  border-radius: var(--radius-md);
+}

@@ -1,0 +1,186 @@
+@import "../../styles/variable.css";
+@import "../../styles/global.css";
+
+/* page background + basic layout */
+.notes-page {
+  min-height: 100vh;
+  background: var(--gradient-primary);
+  font-family: var(--font-main);
+}
+
+/* blurred navbar */
+.navbar {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+}
+
+/* container centering */
+.container {
+  max-width: var(--max-width);
+  margin: 30px auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* card base (Card component already likely styles; these are additional) */
+.card {
+  background: var(--color-surface);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: var(--shadow-lg);
+}
+
+/* main heading */
+.main-card h1 {
+  color: var(--primary-color);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ai-badge {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* messages */
+.message {
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+.message.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+.message.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* form controls */
+.form-group {
+  margin-bottom: 18px;
+}
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--color-text);
+  font-weight: 600;
+}
+textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #e6e9ef;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+/* checkbox group */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+/* button group - uses your Button component, extra spacing preserved */
+.button-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* notes list card */
+.notes-card h2 {
+  margin-bottom: 12px;
+  color: var(--primary-color);
+}
+.notes-list {
+  margin-top: 8px;
+}
+.note-item {
+  background: #f8f9fa;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+.note-text {
+  flex: 1;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+.note-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* AI features card */
+.ai-section-card h2 {
+  margin-bottom: 12px;
+  color: var(--primary-color);
+}
+.ai-section-card .button-group {
+  margin-bottom: 12px;
+}
+.btn-ai {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+
+/* AI response area */
+.ai-response {
+  margin-top: 12px;
+  background: var(--color-surface);
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-color);
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+/* loading spinner + helper */
+.loading {
+  text-align: center;
+  padding: 12px 0;
+}
+.spinner {
+  border: 4px solid rgba(0,0,0,0.06);
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  animation: spin 1s linear infinite;
+  margin: 8px auto;
+}
+@keyframes spin { 0% { transform: rotate(0deg);} 100% { transform: rotate(360deg); } }
+
+/* responsive */
+@media (max-width: 768px) {
+  .container { padding: 12px; }
+  .card { padding: 18px; }
+  .ai-badge { font-size: 0.75rem; padding: 4px 10px; }
+}

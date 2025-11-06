@@ -4,11 +4,15 @@ Main application file with all routes and integrations
 """
 
 from flask import Flask, render_template, request, jsonify, session, send_file, redirect, url_for
+from flask_cors import CORS
 import os
 import logging
 from datetime import datetime
 from werkzeug.utils import secure_filename
 import secrets
+from dotenv import load_dotenv
+from pathlib import Path
+
 
 # Import custom modules
 from Parts.Notes_AI import NotesAI
@@ -19,9 +23,14 @@ from Parts.Search_Engine import SearchEngineAI
 
 # Initialize Flask app
 app = Flask(__name__)
+CORS(app)
 app.secret_key = secrets.token_hex(16)
 app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 100MB
+
+load_dotenv()
+
+
 
 # Configure logging
 logging.basicConfig(
@@ -36,7 +45,16 @@ for directory in ['uploads', 'notes', 'drive_files', 'static/css', 'static/js', 
 
 # Load API keys from environment
 #GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', 'Your Key')
-GEMINI_API_KEY ='Your API Key'
+env_path = Path(__file__).resolve().parent / "Configuration" / ".env"
+load_dotenv(dotenv_path=env_path)
+
+
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+CLOUDINARY_API_KEY = os.getenv("CLOUDINARY_API_KEY")
+CLOUDINARY_CLOUD_NAME = os.getenv("CLOUDINARY_CLOUD_NAME")
+CLOUDINARY_API_SECRET = os.getenv("CLOUDINARY_API_SECRET")
+
+print("🔑 GEMINI_API_KEY:", GEMINI_API_KEY)
 # Cloudinary config for file uploads
 # CLOUDINARY_CONFIG = {
 #     'cloud_name': os.getenv('CLOUDINARY_CLOUD_NAME', ''),

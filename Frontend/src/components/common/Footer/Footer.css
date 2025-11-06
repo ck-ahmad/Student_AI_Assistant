@@ -1,0 +1,45 @@
+footer {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: auto;
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid white;
+  transition: opacity 0.3s ease;
+}
+
+footer a:hover {
+  opacity: 0.8;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+  footer {
+    padding: 25px 15px;
+  }
+
+  footer p {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  footer {
+    padding: 20px 10px;
+  }
+
+  footer p {
+    font-size: 0.85em;
+    line-height: 1.4;
+  }
+}

@@ -1,0 +1,29 @@
+.tab-icon,
+.section-icon {
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.btn svg {
+  vertical-align: middle;
+  margin-right: 6px;
+}
+.h{
+  color: azure;
+}
+
+.tab.active svg {
+  color: #4f46e5;
+}
+
+.btn-success svg {
+  color: #28a745;
+}
+
+.btn-danger svg {
+  color: #dc3545;
+}
+
+.btn-secondary svg {
+  color: #f4b400;
+}

@@ -1,0 +1,28 @@
+{
+  "1": {
+    "filename": "About_PF.pdf",
+    "url": "https://res.cloudinary.com/dqfghgjg3/image/upload/v1762193533/student_ai/1/CS/PF/About_PF.pdf",
+    "semester": 1,
+    "degree": "CS",
+    "subject": "PF",
+    "description": "",
+    "uploaded_at": "2025-11-03T23:12:13.890070",
+    "file_type": "pdf",
+    "size": 2623,
+    "is_cloud": true,
+    "is_external": false
+  },
+  "2": {
+    "filename": "About_PF.pdf",
+    "url": "https://res.cloudinary.com/dqfghgjg3/image/upload/v1762193533/student_ai/1/CS/PF/About_PF.pdf",
+    "semester": 1,
+    "degree": "CS",
+    "subject": "PF",
+    "description": "",
+    "uploaded_at": "2025-11-06T16:36:28.601926",
+    "file_type": "pdf",
+    "size": 2623,
+    "is_cloud": true,
+    "is_external": false
+  }
+}

@@ -448,3 +448,199 @@
 2025-10-29 22:57:51,572 - INFO - 127.0.0.1 - - [29/Oct/2025 22:57:51] "GET / HTTP/1.1" 200 -
 2025-10-29 22:57:54,191 - INFO - 127.0.0.1 - - [29/Oct/2025 22:57:54] "GET /drive HTTP/1.1" 200 -
 2025-10-29 22:57:54,476 - INFO - 127.0.0.1 - - [29/Oct/2025 22:57:54] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-03 21:16:20,001 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.3:5000
+2025-11-03 21:16:20,002 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-03 21:16:20,004 - INFO -  * Restarting with stat
+2025-11-03 21:16:21,657 - WARNING -  * Debugger is active!
+2025-11-03 21:16:21,659 - INFO -  * Debugger PIN: 441-835-468
+2025-11-03 21:19:32,051 - INFO - 127.0.0.1 - - [03/Nov/2025 21:19:32] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-03 21:19:38,818 - INFO - 127.0.0.1 - - [03/Nov/2025 21:19:38] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-03 21:19:45,460 - INFO - 127.0.0.1 - - [03/Nov/2025 21:19:45] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-03 21:22:41,666 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.3:5000
+2025-11-03 21:22:41,666 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-03 21:22:41,668 - INFO -  * Restarting with stat
+2025-11-03 21:22:43,013 - WARNING -  * Debugger is active!
+2025-11-03 21:22:43,015 - INFO -  * Debugger PIN: 441-835-468
+2025-11-03 21:22:52,981 - INFO - 127.0.0.1 - - [03/Nov/2025 21:22:52] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-03 21:22:53,231 - INFO - 127.0.0.1 - - [03/Nov/2025 21:22:53] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-03 21:22:54,114 - INFO - 127.0.0.1 - - [03/Nov/2025 21:22:54] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-03 21:24:47,112 - INFO - Attempting upload: About_PF.pdf, Folder: student_ai/2/CS/pf, Public ID: About_PF
+2025-11-03 21:24:47,112 - INFO - Uploading to Cloudinary: student_ai/2/CS/pf/About_PF
+2025-11-03 21:24:48,864 - ERROR - Error uploading file: Unknown API key Your API Key
+2025-11-03 21:24:48,866 - INFO - 127.0.0.1 - - [03/Nov/2025 21:24:48] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-11-03 21:24:58,693 - INFO - Attempting upload: About_PF.pdf, Folder: student_ai/2/CS/pf, Public ID: About_PF
+2025-11-03 21:24:58,694 - INFO - Uploading to Cloudinary: student_ai/2/CS/pf/About_PF
+2025-11-03 21:24:58,977 - ERROR - Error uploading file: Unknown API key Your API Key
+2025-11-03 21:24:58,979 - INFO - 127.0.0.1 - - [03/Nov/2025 21:24:58] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-11-03 21:25:06,402 - INFO - Attempting upload: About_PF.pdf, Folder: student_ai/2/CS/pf, Public ID: About_PF
+2025-11-03 21:25:06,403 - INFO - Uploading to Cloudinary: student_ai/2/CS/pf/About_PF
+2025-11-03 21:25:06,711 - ERROR - Error uploading file: Unknown API key Your API Key
+2025-11-03 21:25:06,713 - INFO - 127.0.0.1 - - [03/Nov/2025 21:25:06] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-11-03 21:25:15,239 - INFO - Attempting upload: About_PF.pdf, Folder: student_ai/2/CS/pf, Public ID: About_PF
+2025-11-03 21:25:15,239 - INFO - Uploading to Cloudinary: student_ai/2/CS/pf/About_PF
+2025-11-03 21:25:15,542 - ERROR - Error uploading file: Unknown API key Your API Key
+2025-11-03 21:25:15,544 - INFO - 127.0.0.1 - - [03/Nov/2025 21:25:15] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-11-03 21:37:56,021 - INFO -  * Detected change in 'D:\\react\\Student Assistant\\Student_AI_Assistant\\App.py', reloading
+2025-11-03 21:37:56,198 - INFO -  * Restarting with stat
+2025-11-03 21:37:57,528 - WARNING -  * Debugger is active!
+2025-11-03 21:37:57,530 - INFO -  * Debugger PIN: 441-835-468
+2025-11-03 21:38:01,713 - INFO -  * Detected change in 'D:\\react\\Student Assistant\\Student_AI_Assistant\\App.py', reloading
+2025-11-03 21:38:01,921 - INFO -  * Restarting with stat
+2025-11-03 21:38:03,456 - WARNING -  * Debugger is active!
+2025-11-03 21:38:03,460 - INFO -  * Debugger PIN: 441-835-468
+2025-11-03 21:38:24,369 - INFO -  * Detected change in 'D:\\react\\Student Assistant\\Student_AI_Assistant\\App.py', reloading
+2025-11-03 21:38:24,564 - INFO -  * Restarting with stat
+2025-11-03 21:38:26,253 - WARNING -  * Debugger is active!
+2025-11-03 21:38:26,257 - INFO -  * Debugger PIN: 441-835-468
+2025-11-03 21:38:49,643 - INFO - Attempting upload: About_PF.pdf, Folder: student_ai/2/SE/PF, Public ID: About_PF
+2025-11-03 21:38:49,643 - INFO - Uploading to Cloudinary: student_ai/2/SE/PF/About_PF
+2025-11-03 21:38:51,365 - ERROR - Error uploading file: Unknown API key Your API Key
+2025-11-03 21:38:51,368 - INFO - 127.0.0.1 - - [03/Nov/2025 21:38:51] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-11-03 21:38:55,479 - INFO - 127.0.0.1 - - [03/Nov/2025 21:38:55] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-03 21:38:55,791 - INFO - 127.0.0.1 - - [03/Nov/2025 21:38:55] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-03 21:40:15,772 - INFO - 127.0.0.1 - - [03/Nov/2025 21:40:15] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-03 21:40:16,029 - INFO - 127.0.0.1 - - [03/Nov/2025 21:40:16] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-03 21:40:27,919 - INFO - Attempting upload: About_PF.pdf, Folder: student_ai/1/CS/PF, Public ID: About_PF
+2025-11-03 21:40:27,919 - INFO - Uploading to Cloudinary: student_ai/1/CS/PF/About_PF
+2025-11-03 21:40:28,191 - ERROR - Error uploading file: Unknown API key Your API Key
+2025-11-03 21:40:28,193 - INFO - 127.0.0.1 - - [03/Nov/2025 21:40:28] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-11-03 22:27:32,557 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.0.0.2:5000
+2025-11-03 22:27:32,557 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-03 22:27:32,559 - INFO -  * Restarting with stat
+2025-11-03 22:27:34,015 - WARNING -  * Debugger is active!
+2025-11-03 22:27:34,016 - INFO -  * Debugger PIN: 441-835-468
+2025-11-03 22:27:46,643 - INFO - 127.0.0.1 - - [03/Nov/2025 22:27:46] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-03 22:27:46,905 - INFO - 127.0.0.1 - - [03/Nov/2025 22:27:46] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-03 22:28:08,674 - INFO - Attempting upload: About_PF.pdf, Folder: student_ai/1/CS/PF, Public ID: About_PF
+2025-11-03 22:28:08,675 - INFO - Uploading to Cloudinary: student_ai/1/CS/PF/About_PF
+2025-11-03 22:28:10,824 - ERROR - Error uploading file: Unknown API key Your API Key
+2025-11-03 22:28:10,826 - INFO - 127.0.0.1 - - [03/Nov/2025 22:28:10] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-11-03 22:33:18,197 - INFO -  * Detected change in 'D:\\react\\Student Assistant\\Student_AI_Assistant\\App.py', reloading
+2025-11-03 22:33:18,388 - INFO -  * Restarting with stat
+2025-11-03 22:33:19,797 - WARNING -  * Debugger is active!
+2025-11-03 22:33:19,800 - INFO -  * Debugger PIN: 441-835-468
+2025-11-03 22:33:28,079 - INFO -  * Detected change in 'D:\\react\\Student Assistant\\Student_AI_Assistant\\App.py', reloading
+2025-11-03 22:33:28,294 - INFO -  * Restarting with stat
+2025-11-03 22:33:29,698 - WARNING -  * Debugger is active!
+2025-11-03 22:33:29,701 - INFO -  * Debugger PIN: 441-835-468
+2025-11-03 22:33:30,782 - INFO -  * Detected change in 'D:\\react\\Student Assistant\\Student_AI_Assistant\\App.py', reloading
+2025-11-03 22:33:30,997 - INFO -  * Restarting with stat
+2025-11-03 22:33:32,401 - WARNING -  * Debugger is active!
+2025-11-03 22:33:32,404 - INFO -  * Debugger PIN: 441-835-468
+2025-11-03 22:33:41,724 - INFO -  * Detected change in 'D:\\react\\Student Assistant\\Student_AI_Assistant\\app.py', reloading
+2025-11-03 22:33:41,934 - INFO -  * Restarting with stat
+2025-11-03 22:33:43,617 - WARNING -  * Debugger is active!
+2025-11-03 22:33:43,620 - INFO -  * Debugger PIN: 441-835-468
+2025-11-03 22:34:01,156 - INFO - Attempting upload: About_PF.pdf, Folder: student_ai/1/CS/PF, Public ID: About_PF
+2025-11-03 22:34:01,156 - INFO - Uploading to Cloudinary: student_ai/1/CS/PF/About_PF
+2025-11-03 22:34:04,266 - ERROR - Error uploading file: Unknown API key Your API Key
+2025-11-03 22:34:04,269 - INFO - 127.0.0.1 - - [03/Nov/2025 22:34:04] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-11-03 22:34:46,267 - INFO -  * Detected change in 'D:\\react\\Student Assistant\\Student_AI_Assistant\\App.py', reloading
+2025-11-03 22:34:46,458 - INFO -  * Restarting with stat
+2025-11-03 22:34:47,794 - WARNING -  * Debugger is active!
+2025-11-03 22:34:47,796 - INFO -  * Debugger PIN: 441-835-468
+2025-11-03 22:34:51,995 - INFO -  * Detected change in 'D:\\react\\Student Assistant\\Student_AI_Assistant\\App.py', reloading
+2025-11-03 22:34:52,226 - INFO -  * Restarting with stat
+2025-11-03 22:34:53,537 - WARNING -  * Debugger is active!
+2025-11-03 22:34:53,539 - INFO -  * Debugger PIN: 441-835-468
+2025-11-03 22:34:55,656 - INFO -  * Detected change in 'D:\\react\\Student Assistant\\Student_AI_Assistant\\app.py', reloading
+2025-11-03 22:34:55,818 - INFO -  * Restarting with stat
+2025-11-03 22:34:57,163 - WARNING -  * Debugger is active!
+2025-11-03 22:34:57,165 - INFO -  * Debugger PIN: 441-835-468
+2025-11-03 22:38:27,045 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.0.0.2:5000
+2025-11-03 22:38:27,045 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-03 22:38:27,047 - INFO -  * Restarting with stat
+2025-11-03 22:38:28,462 - WARNING -  * Debugger is active!
+2025-11-03 22:38:28,466 - INFO -  * Debugger PIN: 441-835-468
+2025-11-03 22:38:53,209 - INFO - 127.0.0.1 - - [03/Nov/2025 22:38:53] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-03 22:38:53,474 - INFO - 127.0.0.1 - - [03/Nov/2025 22:38:53] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-03 22:39:14,328 - INFO - Attempting upload: About_PF.pdf, Folder: student_ai/1/CS/PF, Public ID: About_PF
+2025-11-03 22:39:14,328 - INFO - Uploading to Cloudinary: student_ai/1/CS/PF/About_PF
+2025-11-03 22:39:16,910 - ERROR - Error uploading file: Unknown API key Your API Key
+2025-11-03 22:39:16,911 - INFO - 127.0.0.1 - - [03/Nov/2025 22:39:16] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-11-03 22:40:11,691 - INFO -  * Detected change in 'D:\\react\\Student Assistant\\Student_AI_Assistant\\App.py', reloading
+2025-11-03 22:40:11,877 - INFO -  * Restarting with stat
+2025-11-03 22:40:13,464 - WARNING -  * Debugger is active!
+2025-11-03 22:40:13,466 - INFO -  * Debugger PIN: 441-835-468
+2025-11-03 22:40:23,377 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.0.0.2:5000
+2025-11-03 22:40:23,378 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-03 22:40:23,380 - INFO -  * Restarting with stat
+2025-11-03 22:40:24,576 - WARNING -  * Debugger is active!
+2025-11-03 22:40:24,578 - INFO -  * Debugger PIN: 441-835-468
+2025-11-03 23:06:59,547 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.0.0.2:5000
+2025-11-03 23:06:59,547 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-03 23:06:59,549 - INFO -  * Restarting with stat
+2025-11-03 23:07:00,929 - WARNING -  * Debugger is active!
+2025-11-03 23:07:00,932 - INFO -  * Debugger PIN: 441-835-468
+2025-11-03 23:12:11,052 - INFO - Attempting upload: About_PF.pdf, Folder: student_ai/1/CS/PF, Public ID: About_PF
+2025-11-03 23:12:11,052 - INFO - Uploading to Cloudinary: student_ai/1/CS/PF/About_PF
+2025-11-03 23:12:13,889 - INFO - Cloudinary upload successful: https://res.cloudinary.com/dqfghgjg3/image/upload/v1762193533/student_ai/1/CS/PF/About_PF.pdf
+2025-11-03 23:12:13,891 - INFO - File uploaded: About_PF.pdf for CS PF
+2025-11-03 23:12:13,893 - INFO - 127.0.0.1 - - [03/Nov/2025 23:12:13] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-11-06 16:34:35,628 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.7:5000
+2025-11-06 16:34:35,629 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-06 16:34:35,631 - INFO -  * Restarting with stat
+2025-11-06 16:34:36,836 - WARNING -  * Debugger is active!
+2025-11-06 16:34:36,838 - INFO -  * Debugger PIN: 705-186-000
+2025-11-06 16:35:49,087 - INFO - 127.0.0.1 - - [06/Nov/2025 16:35:49] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-06 16:35:49,377 - INFO - 127.0.0.1 - - [06/Nov/2025 16:35:49] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-06 16:35:50,092 - INFO - 127.0.0.1 - - [06/Nov/2025 16:35:50] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-06 16:36:25,480 - INFO - Attempting upload: About_PF.pdf, Folder: student_ai/1/CS/pf, Public ID: About_PF
+2025-11-06 16:36:25,481 - INFO - Uploading to Cloudinary: student_ai/1/CS/pf/About_PF
+2025-11-06 16:36:28,601 - INFO - Cloudinary upload successful: https://res.cloudinary.com/dqfghgjg3/image/upload/v1762193533/student_ai/1/CS/PF/About_PF.pdf
+2025-11-06 16:36:28,603 - INFO - File uploaded: About_PF.pdf for CS pf
+2025-11-06 16:36:28,605 - INFO - 127.0.0.1 - - [06/Nov/2025 16:36:28] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-11-06 16:36:31,226 - INFO - 127.0.0.1 - - [06/Nov/2025 16:36:31] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-06 16:36:31,557 - INFO - 127.0.0.1 - - [06/Nov/2025 16:36:31] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-06 16:39:39,469 - INFO - 127.0.0.1 - - [06/Nov/2025 16:39:39] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-06 16:39:39,726 - INFO - 127.0.0.1 - - [06/Nov/2025 16:39:39] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-06 16:40:38,448 - INFO - 127.0.0.1 - - [06/Nov/2025 16:40:38] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-06 16:40:38,763 - INFO - 127.0.0.1 - - [06/Nov/2025 16:40:38] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-06 16:42:00,210 - INFO - Attempting upload: About_PF.pdf, Folder: student_ai/1/CS/PF, Public ID: About_PF
+2025-11-06 16:42:00,210 - INFO - Uploading to Cloudinary: student_ai/1/CS/PF/About_PF
+2025-11-06 16:42:00,889 - INFO - Cloudinary upload successful: https://res.cloudinary.com/dqfghgjg3/image/upload/v1762193533/student_ai/1/CS/PF/About_PF.pdf
+2025-11-06 16:42:00,891 - INFO - File uploaded: About_PF.pdf for CS PF
+2025-11-06 16:42:00,892 - INFO - 127.0.0.1 - - [06/Nov/2025 16:42:00] "POST /api/drive/upload HTTP/1.1" 200 -
+2025-11-06 16:48:57,087 - INFO - 127.0.0.1 - - [06/Nov/2025 16:48:57] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-06 16:48:57,371 - INFO - 127.0.0.1 - - [06/Nov/2025 16:48:57] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-06 16:55:08,503 - INFO - 127.0.0.1 - - [06/Nov/2025 16:55:08] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-06 16:55:08,754 - INFO - 127.0.0.1 - - [06/Nov/2025 16:55:08] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-06 16:55:12,852 - INFO - 127.0.0.1 - - [06/Nov/2025 16:55:12] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-06 16:55:20,715 - INFO - 127.0.0.1 - - [06/Nov/2025 16:55:20] "OPTIONS /api/drive/delete HTTP/1.1" 200 -
+2025-11-06 16:55:22,376 - INFO - File deleted: 3
+2025-11-06 16:55:22,377 - INFO - 127.0.0.1 - - [06/Nov/2025 16:55:22] "POST /api/drive/delete HTTP/1.1" 200 -
+2025-11-06 16:55:22,384 - INFO - 127.0.0.1 - - [06/Nov/2025 16:55:22] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-06 16:55:22,695 - INFO - 127.0.0.1 - - [06/Nov/2025 16:55:22] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-06 16:55:40,764 - INFO - 127.0.0.1 - - [06/Nov/2025 16:55:40] "OPTIONS /api/drive/predefined HTTP/1.1" 200 -
+2025-11-06 16:55:41,072 - INFO - 127.0.0.1 - - [06/Nov/2025 16:55:41] "POST /api/drive/predefined HTTP/1.1" 200 -
+2025-11-06 16:55:50,512 - INFO - 127.0.0.1 - - [06/Nov/2025 16:55:50] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-06 16:55:50,822 - INFO - 127.0.0.1 - - [06/Nov/2025 16:55:50] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-06 17:00:28,423 - INFO - 127.0.0.1 - - [06/Nov/2025 17:00:28] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-06 17:00:28,682 - INFO - 127.0.0.1 - - [06/Nov/2025 17:00:28] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-06 17:00:38,662 - INFO - 127.0.0.1 - - [06/Nov/2025 17:00:38] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-06 17:00:38,982 - INFO - 127.0.0.1 - - [06/Nov/2025 17:00:38] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-06 17:00:44,491 - INFO - 127.0.0.1 - - [06/Nov/2025 17:00:44] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-06 17:00:44,806 - INFO - 127.0.0.1 - - [06/Nov/2025 17:00:44] "POST /api/drive/list HTTP/1.1" 200 -
+2025-11-06 17:00:53,380 - INFO - 127.0.0.1 - - [06/Nov/2025 17:00:53] "OPTIONS /api/drive/list HTTP/1.1" 200 -
+2025-11-06 17:00:53,694 - INFO - 127.0.0.1 - - [06/Nov/2025 17:00:53] "POST /api/drive/list HTTP/1.1" 200 -
