@@ -18,7 +18,7 @@ A comprehensive AI-powered web application designed specifically for students, f
 
 ## 👥 Development Team
 
-### **Safia Liaqat** - Frontend Developer (Under process as Safia will enhance fronet end by React)
+### **Safia Liaqat** - Frontend Developer (JS/React & Safia Branch) 
 - 🎨 **Responsible for**: Complete Frontend Architecture & UI/UX Design
 - ⚛️ **Tech Stack**: React.js, Modern CSS, Responsive Design
 - 💡 **Key Contributions**:
@@ -30,7 +30,7 @@ A comprehensive AI-powered web application designed specifically for students, f
 - 💼 GitHub: [@safialiaqat](https://github.com/Safia-Liaqat)
 - 🔗 LinkedIn: [Safia Liaqat](https://www.linkedin.com/in/safia-liaqat-7a8082200)
 
-### **Ahmad** - Backend Developer (Python/Flask)
+### **Ahmad** - Backend Developer (Python/Flask & Main Branch)
 - ⚙️ **Responsible for**: Complete Backend Architecture & AI Integration
 - 🐍 **Tech Stack**: Python, Flask, Google Gemini AI, RESTful APIs
 - 💡 **Key Contributions**:
