@@ -1,0 +1,67 @@
+@import "../../../styles/variables.css";
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.modal {
+  background-color: var(--color-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  animation: fadeIn 0.25s ease;
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.modal-body {
+  padding: var(--space-md);
+  color: var(--color-text);
+}
+
+.modal-footer {
+  padding: var(--space-md);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-close {
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.modal-close:hover {
+  background-color: var(--color-primary-dark);
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

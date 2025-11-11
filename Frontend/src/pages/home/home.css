@@ -1,0 +1,243 @@
+@import "../../styles/variable.css";
+@import "../../styles/global.css";
+
+/* --------------------
+   Container + Header
+--------------------- */
+.home-container {
+  flex: 1;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.home-header {
+  background: var(--color-primary);
+  color: white;
+  padding: 40px 20px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+}
+
+.home-header h1 {
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+  animation: fadeInDown 1.2s ease;
+}
+
+.home-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  animation: fadeIn 2s ease;
+}
+
+/* --------------------
+   Grid Layout (2 cards per row)
+--------------------- */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 35px;
+  margin-top: 50px;
+}
+
+/* --------------------
+   Card Styling
+--------------------- */
+.feature-link {
+  text-decoration: none !important; /* removes underline on click/hover */
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+.card {
+  background: var(--card-bg, #fff);
+  border-radius: 20px;
+  padding: 35px;
+  box-shadow: var(--shadow-lg, 0 10px 25px rgba(0, 0, 0, 0.15));
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, var(--color-primary), var(--accent-color));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-xl, 0 20px 35px rgba(0, 0, 0, 0.2));
+}
+
+/* --------------------
+   Inner Elements
+--------------------- */
+.feature-icon {
+  font-size: 3rem;
+  color: var(--accent-color);
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.card:hover .feature-icon {
+            animation: spin 0.6s ease;
+}
+
+
+
+.card h2 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  font-size: 1.8em;
+  font-weight: 600;
+}
+
+.card p {
+  color: var(--text-secondary, #555);
+  line-height: 1.7;
+  font-size: 1em;
+  flex: 1;
+  margin-bottom: 10px;
+}
+
+.badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+/* --------------------
+   Animations
+--------------------- */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+ @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+/* --------------------
+   Responsive Design
+--------------------- */
+
+/* Tablets: stack slightly tighter */
+@media (max-width: 1024px) {
+  .features-grid {
+    gap: 25px;
+  }
+  .card {
+    padding: 30px;
+  }
+}
+
+/* Mobile Landscape: 1 card per row */
+@media (max-width: 768px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-header {
+    padding: 30px 15px;
+  }
+
+  .card {
+    padding: 25px;
+  }
+
+  .feature-icon {
+    font-size: 2.8em;
+  }
+
+  .card h2 {
+    font-size: 1.5em;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .home-container {
+    padding: 10px;
+  }
+
+  .home-header h1 {
+    font-size: 1.9rem;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .feature-icon {
+    font-size: 2.4em;
+  }
+
+  .card h2 {
+    font-size: 1.3em;
+  }
+
+  .card p {
+    font-size: 0.9em;
+  }
+
+  .badge {
+    font-size: 0.7em;
+  }
+}

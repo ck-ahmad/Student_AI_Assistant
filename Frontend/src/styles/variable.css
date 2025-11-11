@@ -1,0 +1,59 @@
+/* 🎨 Vite-Inspired Theme Variables */
+:root {
+  /* ------------------------
+     Colors
+  ------------------------ */
+  --color-primary: #667eea; /* Vite's signature purple-blue */
+  --color-primary-dark: #4b50d1;
+  --color-accent: #61a9fb; /* React accent cyan */
+  --color-bg: #f5f7ff; /* soft off-white background */
+  --color-surface: #ffffff; /* card surface */
+  --color-text: #1e293b; /* neutral dark text */
+  --color-muted: #64748b; /* subtle gray text */
+
+  /* Gradient (used for headers or buttons if needed) */
+  --gradient-primary: linear-gradient(90deg, #646cff, #61dafb);
+
+  /* ------------------------
+     Shadows & Borders
+  ------------------------ */
+  --shadow-light: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 20px 35px rgba(0, 0, 0, 0.2);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* ------------------------
+     Typography
+  ------------------------ */
+  --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-code: 'Roboto Mono', monospace;
+
+  /* ------------------------
+     Sizing & Spacing
+  ------------------------ */
+  --max-width: 1200px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+
+  /* ------------------------
+     Compatibility Aliases
+     (for existing CSS files)
+  ------------------------ */
+  --primary-color: var(--color-primary);
+  --accent-color: var(--color-accent);
+  --text-secondary: var(--color-muted);
+  --card-bg: var(--color-surface);
+}
+
+:root {
+
+  --font-size-base: 1.05rem; /* ~17px */
+  --font-size-lg: 1.2rem;
+  --font-size-xl: 1.6rem;
+}

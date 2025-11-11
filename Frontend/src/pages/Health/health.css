@@ -1,0 +1,180 @@
+.health-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+}
+
+/* FIX: Ensure the Health page's card doesn't restrict its contents */
+.container .card {
+  display: flex; /* Makes card a flex container */
+  flex-direction: column; /* Stacks children vertically (default for a card) */
+  gap: 15px; /* Adds spacing between card children (like h1, warning, form-group) */
+  padding: 30px; /* Kept for reference, though already in previous CSS */
+}
+
+/* FIX: Ensure category buttons stretch across the card width correctly */
+.container .card .form-group {
+    width: 100%;
+}
+.container {
+  margin: 30px auto;
+  padding: 20px;
+  width: 100%;
+}
+
+
+
+.warning {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  color: #856404;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+
+
+/* Horizontal button layout (using Grid) - */
+.category-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); 
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.category-btn {
+  background: #f8f9fa;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px 5px; /* Slightly reduced padding for compactness */
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9em; /* Slightly smaller font */
+}
+
+.category-btn:hover,
+.category-btn.active {
+  border-color: #667eea;
+  background: #e7f0ff;
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.1);
+}
+
+/* Style for the active input section (full width below buttons) */
+.active-section {
+  width: 100%;
+  border-top: 2px solid #667eea;
+  padding-top: 20px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  background-color: #f9fbfd; /* Light background for separation */
+  border-radius: 0 0 10px 10px;
+  padding: 25px;
+}
+
+/* Input Fields Styling */
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  box-sizing: border-box; /* Important for padding/border calculation */
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* To put fields like Age and Gender side-by-side */
+.form-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.form-row .form-group {
+  flex: 1; /* Makes each form group take up equal space */
+}
+
+/* Button styling */
+.btn {
+  background: #667eea;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 15px;
+}
+
+.btn:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+}
+
+.result-box {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+  margin-top: 20px;
+  white-space: pre-wrap;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+}

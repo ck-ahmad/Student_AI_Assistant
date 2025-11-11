@@ -1,0 +1,120 @@
+
+
+header {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 25px 15px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+header h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: fadeInDown 1s ease-out;
+}
+
+header p {
+  font-size: 1.3em;
+  opacity: 0.9;
+  animation: fadeInUp 1s ease-out;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Header */
+@media (max-width: 1024px) {
+  header h1 {
+    font-size: 2.4em;
+  }
+  header p {
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 20px 10px;
+  }
+
+  header h1 {
+    font-size: 1.9em;
+  }
+
+  header p {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.6em;
+  }
+
+  header p {
+    font-size: 0.9em;
+  }
+}
+
+
+/* pages header */
+
+
+.section-navbar {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  backdrop-filter: blur(10px);
+  color: white;
+  display: flex;
+  justify-content: space-between; /* left and right extremes */
+  align-items: center;
+  padding: 15px 30px;
+  margin-bottom: 30px;
+}
+
+/* Style for the Back link */
+.nav-back {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px; /* spacing between icon and text */
+  font-weight: 500;
+}
+
+/* Right side: title + icon */
+.section-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* spacing between title and icon */
+}
+
+.section-title {
+  margin: 0;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
