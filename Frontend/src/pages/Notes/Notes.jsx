@@ -2,356 +2,479 @@ import React, { useState } from "react";
 import Card from "../../components/common/Card/Card";
 import Button from "../../components/common/Button/Button";
 import Input from "../../components/common/Input/Input";
+import { marked } from 'marked'; 
+import {
+  FiPlus,
+  FiEye,
+  FiSearch,
+  FiEdit2,
+  FiTrash2,
+  FiBookOpen,
+  FiMessageSquare,
+  FiLayers,
+  FiMic, 
+} from "react-icons/fi";
 import "./notes.css";
 
-export default function Notes() {
-  const [topic, setTopic] = useState("");
-  const [noteText, setNoteText] = useState("");
-  const [useAI, setUseAI] = useState(true);
+// Helper for safe HTML injection (as seen in your original code)
+const escapeHtml = (str) =>
+  String(str)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState(null); // { type: 'success'|'error', text }
-  const [notes, setNotes] = useState([]);
-  const [notesVisible, setNotesVisible] = useState(false);
-  const [aiResponseHTML, setAiResponseHTML] = useState("");
-
-  const showMessage = (text, type = "success") => {
-    setMessage({ text, type });
-    window.clearTimeout(showMessage._t);
-    showMessage._t = setTimeout(() => setMessage(null), 4500);
-  };
-
-  /* -------- API actions (replace endpoints later) -------- */
-
-  const addNote = async () => {
-    const trimmedTopic = topic.trim();
-    const trimmedNote = noteText.trim();
-    if (!trimmedTopic || !trimmedNote) return showMessage("Please enter both topic and note", "error");
-
-    setLoading(true);
-    try {
-      const res = await fetch("/api/notes/create", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic: trimmedTopic, note: trimmedNote, use_ai: useAI }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        showMessage(data.message || "Note added", "success");
-        setNoteText("");
-        // If API returned enhanced note, optionally show short preview message
-        if (useAI && data.enhanced_note) {
-          showMessage("AI Enhanced: " + data.enhanced_note.slice(0, 120) + "...", "success");
-        }
-        await viewNotes(); // refresh list
-      } else {
-        showMessage(data.message || "Failed to add note", "error");
-      }
-    } catch (err) {
-      showMessage("Error adding note: " + err.message, "error");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const viewNotes = async () => {
-    const trimmedTopic = topic.trim();
-    if (!trimmedTopic) return showMessage("Please enter a topic name", "error");
-
-    setLoading(true);
-    try {
-      const res = await fetch("/api/notes/view", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic: trimmedTopic }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setNotes(Array.isArray(data.notes) ? data.notes : []);
-        setNotesVisible(true);
-      } else {
-        showMessage(data.message || "Failed to load notes", "error");
-      }
-    } catch (err) {
-      showMessage("Error viewing notes: " + err.message, "error");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const deleteNote = async (id) => {
-    const trimmedTopic = topic.trim();
-    if (!trimmedTopic) return showMessage("Please enter a topic name", "error");
-    if (!window.confirm("Are you sure you want to delete this note?")) return;
-
-    setLoading(true);
-    try {
-      const res = await fetch("/api/notes/delete", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic: trimmedTopic, note_id: id }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        showMessage(data.message || "Note deleted", "success");
-        await viewNotes();
-      } else {
-        showMessage(data.message || "Delete failed", "error");
-      }
-    } catch (err) {
-      showMessage("Error deleting note: " + err.message, "error");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const editNote = async (id) => {
-    const trimmedTopic = topic.trim();
-    if (!trimmedTopic) return showMessage("Please enter a topic name", "error");
-
-    const newText = window.prompt("Enter the updated note:");
-    if (!newText) return;
-
-    const enhance = window.confirm("Enhance with AI?");
-    setLoading(true);
-    try {
-      const res = await fetch("/api/notes/edit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic: trimmedTopic, note_id: id, new_text: newText, use_ai: enhance }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        showMessage(data.message || "Note updated", "success");
-        await viewNotes();
-      } else {
-        showMessage(data.message || "Update failed", "error");
-      }
-    } catch (err) {
-      showMessage("Error editing note: " + err.message, "error");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const searchNotes = async () => {
-    const trimmedTopic = topic.trim();
-    if (!trimmedTopic) return showMessage("Please enter a topic name", "error");
-    const keyword = window.prompt("Enter keyword to search:");
-    if (!keyword) return;
-
-    setLoading(true);
-    try {
-      const res = await fetch("/api/notes/search", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic: trimmedTopic, keyword }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setNotes(Array.isArray(data.notes) ? data.notes : []);
-        setNotesVisible(true);
-        showMessage(`Found ${data.notes.length} note(s)`, "success");
-      } else {
-        showMessage(data.message || "Search failed", "error");
-      }
-    } catch (err) {
-      showMessage("Error searching notes: " + err.message, "error");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  /* -------- AI features -------- */
-
-  const summarizeNotes = async () => {
-    const trimmedTopic = topic.trim();
-    if (!trimmedTopic) return showMessage("Please enter a topic name", "error");
-    setLoading(true);
-    try {
-      const res = await fetch("/api/notes/summarize", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic: trimmedTopic }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setAiResponseHTML(`<div class="ai-response"><h3>📋 Summary</h3>${data.summary}</div>`);
-        showMessage("Summary generated!", "success");
-      } else {
-        showMessage(data.message || "Summary failed", "error");
-      }
-    } catch (err) {
-      showMessage("Error: " + err.message, "error");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const askAI = async () => {
-    const trimmedTopic = topic.trim();
-    if (!trimmedTopic) return showMessage("Please enter a topic name", "error");
-    const question = window.prompt("Ask a question about your notes:");
-    if (!question) return;
-
-    setLoading(true);
-    try {
-      const res = await fetch("/api/notes/ask-ai", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic: trimmedTopic, question }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setAiResponseHTML(
-          `<div class="ai-response"><h3>💬 AI Answer</h3><p><strong>Q:</strong> ${escapeHtml(
-            question
-          )}</p><p><strong>A:</strong> ${data.answer}</p></div>`
+// --- Helper function to render consolidated notes ---
+const renderConsolidatedNotes = (notes, topic, editNote, deleteNote) => {
+    if (notes.length === 0) {
+        return (
+            <p style={{ textAlign: "center", color: "#666" }}>
+                No notes found for this topic.
+            </p>
         );
-        showMessage("AI answered your question!", "success");
-      } else {
-        showMessage(data.message || "AI failed", "error");
-      }
-    } catch (err) {
-      showMessage("Error: " + err.message, "error");
-    } finally {
-      setLoading(false);
     }
-  };
+    
+    // 1. Join all note texts into one long string, separated by two newlines
+    const fullNoteText = notes
+        .map(n => n.text)
+        .join('\n\n'); 
 
-  const generateFlashcards = async () => {
-    const trimmedTopic = topic.trim();
-    if (!trimmedTopic) return showMessage("Please enter a topic name", "error");
-    setLoading(true);
-    try {
-      const res = await fetch("/api/notes/flashcards", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic: trimmedTopic }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        const flashcardsHTML = Array.isArray(data.flashcards)
-          ? data.flashcards
-              .map(
-                (card, i) =>
-                  `<div class="flashcard"><strong>Card ${i + 1}</strong><br><strong>Front:</strong> ${escapeHtml(
-                    card.front
-                  )}<br><strong>Back:</strong> ${escapeHtml(card.back)}</div>`
-              )
-              .join("")
-          : "<div>No flashcards returned</div>";
-        setAiResponseHTML(`<div class="ai-response"><h3>📇 Flashcards Generated</h3>${flashcardsHTML}</div>`);
-        showMessage("Flashcards generated!", "success");
-      } else {
-        showMessage(data.message || "Flashcards generation failed", "error");
-      }
-    } catch (err) {
-      showMessage("Error: " + err.message, "error");
-    } finally {
-      setLoading(false);
-    }
-  };
+    // 2. Clean up the combined text (timestamp and extra spaces)
+    const contentWithoutTimestamps = fullNoteText.replace(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} - /g, '').trim();
+    const cleanedContent = contentWithoutTimestamps.replace(/\* {3,}/g, '* ').trim();
 
-  /* helper: escape for safe injection of small strings (we still use result HTML returned by API as-is) */
-  const escapeHtml = (str) =>
-    String(str)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
-
-  return (
-    <div className="notes-page">
-      <nav className="navbar">
-        <a href="/">← Back to Home</a>
-        <h2>📝 AI-Powered Smart Notes</h2>
-      </nav>
-
-      <div className="container">
-        <Card className="card main-card">
-          <h1>
-            Manage Your Notes <span className="ai-badge">🤖 AI Powered by Gemini</span>
-          </h1>
-
-          {message && <div className={`message ${message.type}`}>{message.text}</div>}
-
-          <div className="form-group">
-            <label htmlFor="topic">📚 Topic Name:</label>
-            <Input id="topic" value={topic} onChange={(e) => setTopic(e.target.value)} placeholder="Enter topic (e.g., Python, Biology, History)" />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="note">✍️ Note Content:</label>
-            <textarea id="note" value={noteText} onChange={(e) => setNoteText(e.target.value)} placeholder="Enter your note here..." />
-          </div>
-
-          <div className="checkbox-group">
-            <input id="useAI" type="checkbox" checked={useAI} onChange={(e) => setUseAI(e.target.checked)} />
-            <label htmlFor="useAI" style={{ margin: 0 }}>
-              🤖 Enhance with AI (improve grammar, formatting, and clarity)
-            </label>
-          </div>
-
-          <div className="button-group">
-            <Button onClick={addNote} disabled={loading}>
-              ✅ Add Note
-            </Button>
-            <Button variant="secondary" onClick={viewNotes} disabled={loading}>
-              👁️ View Notes
-            </Button>
-            <Button variant="secondary" onClick={searchNotes} disabled={loading}>
-              🔍 Search
-            </Button>
-          </div>
-
-          {loading && (
-            <div className="loading" role="status" aria-live="polite">
-              <div className="spinner" />
-              <p>AI is working...</p>
+   
+    return (
+        <div className="note-item" key="consolidated-note">
+            <div 
+                className="note-text"
+                dangerouslySetInnerHTML={{ __html: marked.parse(cleanedContent) }}
+            />
+            
+            {/* Action buttons (linked to the first note's ID for CRUD operations) */}
+            <div className="note-actions">
+                <Button 
+                    onClick={() => editNote(notes[0].id)}>
+                    <FiEdit2 /> Edit
+                </Button>
+                <Button 
+                    onClick={() => deleteNote(notes[0].id)} 
+                    variant="danger">
+                    <FiTrash2 /> Delete
+                </Button>
             </div>
-          )}
-        </Card>
+        </div>
+    );
+};
+// ---------------------------------------------------
 
-        <Card className="card notes-card" style={{ display: notesVisible ? "block" : "none" }}>
-          <h2>Your Notes</h2>
-          <div className="notes-list">
-            {notes.length === 0 ? (
-              <p style={{ textAlign: "center", color: "var(--text-secondary, #666)" }}>No notes found for this topic.</p>
-            ) : (
-              notes.map((n) => (
-                <div className="note-item" key={n.id}>
-                  <div className="note-text">{n.text}</div>
-                  <div className="note-actions">
-                    <Button onClick={() => editNote(n.id)}>✏️ Edit</Button>
-                    <Button variant="danger" onClick={() => deleteNote(n.id)}>
-                      🗑️ Delete
-                    </Button>
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
-        </Card>
 
-        <Card className="card ai-section-card">
-          <h2>🤖 AI Features</h2>
-          <div className="button-group">
-            <Button className="btn-ai" onClick={summarizeNotes} disabled={loading}>
-              📋 Summarize All Notes
-            </Button>
-            <Button className="btn-ai" onClick={askAI} disabled={loading}>
-              💬 Ask AI About Notes
-            </Button>
-            <Button className="btn-ai" onClick={generateFlashcards} disabled={loading}>
-              📇 Generate Flashcards
-            </Button>
-          </div>
+export default function Notes() {
+  const BASE_URL = "http://127.0.0.1:5000"; // Flask backend
 
-          <div id="aiResponse" dangerouslySetInnerHTML={{ __html: aiResponseHTML }} />
-        </Card>
-      </div>
-    </div>
-  );
+  const [topic, setTopic] = useState("");
+  const [noteText, setNoteText] = useState("");
+  const [useAI, setUseAI] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState(null);
+  const [notes, setNotes] = useState([]);
+  const [notesVisible, setNotesVisible] = useState(false);
+  const [aiResponseHTML, setAiResponseHTML] = useState("");
+
+  const showMessage = (text, type = "success") => {
+    setMessage({ text, type });
+    window.clearTimeout(showMessage._t);
+    showMessage._t = setTimeout(() => setMessage(null), 4500);
+  };
+
+  /* -------- API actions: CRUD & Search (Your existing logic) -------- */
+
+  const viewNotes = async () => {
+    const trimmedTopic = topic.trim();
+    if (!trimmedTopic)
+      return showMessage("Please enter a topic name to view notes", "error");
+
+    setLoading(true);
+    try {
+      const res = await fetch(`${BASE_URL}/api/notes/view`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ topic: trimmedTopic }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setNotes(Array.isArray(data.notes) ? data.notes : []);
+        setNotesVisible(true);
+        showMessage(`Loaded ${data.notes.length} notes for topic: ${trimmedTopic}`, "success");
+      } else {
+        showMessage(data.message || "Failed to load notes", "error");
+      }
+    } catch (err) {
+      showMessage("Error viewing notes: Check if backend is running and CORS is enabled.", "error");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const addNote = async () => {
+    // ... (addNote logic remains the same)
+    const trimmedTopic = topic.trim();
+    const trimmedNote = noteText.trim();
+    if (!trimmedTopic || !trimmedNote)
+      return showMessage("Please enter both topic and note content", "error");
+
+    setLoading(true);
+    try {
+      const res = await fetch(`${BASE_URL}/api/notes/create`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          topic: trimmedTopic,
+          note: trimmedNote,
+          use_ai: useAI,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        showMessage(data.message || "Note added", "success");
+        setNoteText("");
+        if (useAI && data.enhanced_note) {
+          // Display the first part of the AI-enhanced note
+          setAiResponseHTML(
+            `<div class="ai-response ai-info">
+                <h3>📝 Enhanced Note Preview</h3>
+                ${data.enhanced_note.slice(0, 500)}...
+            </div>`
+          );
+        }
+        await viewNotes(); // Refresh the list of notes
+      } else {
+        showMessage(data.message || "Failed to add note", "error");
+      }
+    } catch (err) {
+      showMessage("Error adding note: " + err.message, "error");
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  const deleteNote = async (id) => {
+    // ... (deleteNote logic remains the same)
+    const trimmedTopic = topic.trim();
+    if (!trimmedTopic)
+      return showMessage("Please enter a topic name", "error");
+    if (!window.confirm("Are you sure you want to delete this note?")) return;
+
+    setLoading(true);
+    try {
+      const res = await fetch(`${BASE_URL}/api/notes/delete`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ topic: trimmedTopic, note_id: id }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        showMessage(data.message || "Note deleted", "success");
+        await viewNotes();
+      } else {
+        showMessage(data.message || "Delete failed", "error");
+      }
+    } catch (err) {
+      showMessage("Error deleting note: " + err.message, "error");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const editNote = async (id) => {
+    // ... (editNote logic remains the same)
+    const trimmedTopic = topic.trim();
+    if (!trimmedTopic)
+      return showMessage("Please enter a topic name", "error");
+
+    const newText = window.prompt("Enter the updated note:");
+    if (!newText) return;
+
+    const enhance = window.confirm("Enhance with AI? (Recommended)");
+    setLoading(true);
+    try {
+      const res = await fetch(`${BASE_URL}/api/notes/edit`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          topic: trimmedTopic,
+          note_id: id,
+          new_text: newText,
+          use_ai: enhance,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        showMessage(data.message || "Note updated", "success");
+        await viewNotes();
+      } else {
+        showMessage(data.message || "Update failed", "error");
+      }
+    } catch (err) {
+      showMessage("Error editing note: " + err.message, "error");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const searchNotes = async () => {
+    // ... (searchNotes logic remains the same)
+    const trimmedTopic = topic.trim();
+    if (!trimmedTopic)
+      return showMessage("Please enter a topic name", "error");
+    const keyword = window.prompt("Enter keyword to search:");
+    if (!keyword) return;
+
+    setLoading(true);
+    try {
+      const res = await fetch(`${BASE_URL}/api/notes/search`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ topic: trimmedTopic, keyword }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setNotes(Array.isArray(data.notes) ? data.notes : []);
+        setNotesVisible(true);
+        showMessage(`Found ${data.notes.length} note(s)`, "success");
+      } else {
+        showMessage(data.message || "Search failed", "error");
+      }
+    } catch (err) {
+      showMessage("Error searching notes: " + err.message, "error");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  /* -------- AI features (Completed from your draft) -------- */
+
+  const summarizeNotes = async () => {
+    // ... (summarizeNotes logic remains the same)
+    const trimmedTopic = topic.trim();
+    if (!trimmedTopic)
+      return showMessage("Please enter a topic name", "error");
+    setLoading(true);
+    try {
+      const res = await fetch(`${BASE_URL}/api/notes/summarize`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ topic: trimmedTopic }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setAiResponseHTML(
+          `<div class="ai-response ai-summary"><h3>📋 Summary for ${trimmedTopic}</h3>${marked.parse(data.summary)}</div>`
+        );
+        showMessage("Summary generated!", "success");
+      } else {
+        showMessage(data.message || "Summary failed", "error");
+      }
+    } catch (err) {
+      showMessage("Error summarizing notes: " + err.message, "error");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const askAI = async () => {
+    // ... (askAI logic remains the same)
+    const trimmedTopic = topic.trim();
+    if (!trimmedTopic)
+      return showMessage("Please enter a topic name", "error");
+    const question = window.prompt("Ask a question about your notes:");
+    if (!question) return;
+
+    setLoading(true);
+    try {
+      const res = await fetch(`${BASE_URL}/api/notes/ask-ai`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ topic: trimmedTopic, question }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setAiResponseHTML(
+          `<div class="ai-response ai-question">
+            <h3>💬 AI Answer on ${trimmedTopic}</h3>
+            <p><strong>Q:</strong> ${escapeHtml(question)}</p>
+            <div class="ai-answer-content">${marked.parse(data.answer)}</div>
+           </div>`
+        );
+        showMessage("AI answered your question!", "success");
+      } else {
+        showMessage(data.message || "AI failed", "error");
+      }
+    } catch (err) {
+      showMessage("Error asking AI: " + err.message, "error");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const generateFlashcards = async () => {
+    // ... (generateFlashcards logic remains the same)
+    const trimmedTopic = topic.trim();
+    if (!trimmedTopic)
+      return showMessage("Please enter a topic name", "error");
+    setLoading(true);
+    try {
+      const res = await fetch(`${BASE_URL}/api/notes/flashcards`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ topic: trimmedTopic }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        // Flashcard data is structured, no need for marked.parse here, 
+        // but we ensure the output is safe.
+        const flashcardsHTML = Array.isArray(data.flashcards)
+          ? data.flashcards
+              .map(
+                (card, i) =>
+                  `<div class="flashcard">
+                    <strong>Card ${i + 1}:</strong>
+                    <p><strong>Front:</strong> ${escapeHtml(card.front)}</p>
+                    <p><strong>Back:</strong> ${escapeHtml(card.back)}</p>
+                  </div>`
+              )
+              .join("")
+          : "<div style='text-align:center;'>No flashcards returned</div>";
+        setAiResponseHTML(
+          `<div class="ai-response ai-flashcards">
+            <h3>📇 Flashcards for ${trimmedTopic}</h3>
+            ${flashcardsHTML}
+          </div>`
+        );
+        showMessage("Flashcards generated!", "success");
+      } else {
+        showMessage(data.message || "Flashcards generation failed", "error");
+      }
+    } catch (err) {
+      showMessage("Error generating flashcards: " + err.message, "error");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  /* -------- Voice Note (Requires a new type of connection - currently disabled) -------- */
+  const recordVoiceNote = () => {
+    showMessage("Voice Note feature requires complex file/audio handling and is not yet implemented on the frontend.", "warning");
+    // To implement this, you would need to use a library to access the user's microphone
+    // and send the resulting audio file to a dedicated file upload endpoint on the backend.
+  };
+
+  /* -------- Render Method (UI) -------- */
+  return (
+    <div className="notes-page">
+
+      <div className="container">
+        <Card className="card main-card">
+          <h1>
+            Manage Your Notes{" "}
+            <span className="ai-badge">🤖 AI Powered by Gemini</span>
+          </h1>
+
+          {message && (
+            <div className={`message ${message.type}`}>{message.text}</div>
+          )}
+
+          <div className="form-group">
+            <label htmlFor="topic">📚 Topic Name:</label>
+            <Input
+              id="topic"
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+              placeholder="Enter topic (e.g., Python, Biology, History)"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="note">✍️ Note Content:</label>
+            <textarea
+              id="note"
+              value={noteText}
+              onChange={(e) => setNoteText(e.target.value)}
+              placeholder="Enter your note here..."
+            />
+          </div>
+
+          <div className="checkbox-group">
+            <input
+              id="useAI"
+              type="checkbox"
+              checked={useAI}
+              onChange={(e) => setUseAI(e.target.checked)}
+            />
+            <label htmlFor="useAI" style={{ margin: 0 }}>
+              🤖 Enhance with AI (improve grammar, formatting, and clarity)
+            </label>
+          </div>
+
+          <div className="button-group main-actions">
+            <Button onClick={addNote} disabled={loading}>
+              <FiPlus /> Add Note
+            </Button>
+            <Button variant="secondary" onClick={viewNotes} disabled={loading}>
+              <FiEye /> View Notes
+            </Button>
+            <Button variant="secondary" onClick={searchNotes} disabled={loading}>
+              <FiSearch /> Search Notes
+            </Button>
+          </div>
+          
+          <hr style={{ margin: '15px 0', borderTop: '1px dashed #ddd' }} />
+          
+          <div className="button-group ai-actions">
+             <Button variant="info" onClick={summarizeNotes} disabled={loading}>
+                <FiBookOpen /> Summarize
+            </Button>
+            <Button variant="info" onClick={askAI} disabled={loading}>
+                <FiMessageSquare /> Ask AI
+            </Button>
+            <Button variant="info" onClick={generateFlashcards} disabled={loading}>
+                <FiLayers /> Flashcards
+            </Button>
+            {/* Disabled until complex file upload logic is added */}
+            <Button variant="warning" onClick={recordVoiceNote} disabled={loading}> 
+                <FiMic /> Voice Note (TBD)
+            </Button>
+          </div>
+
+          {loading && (
+            <div className="loading" role="status" aria-live="polite">
+              <div className="spinner" />
+              <p>AI is working...</p>
+            </div>
+          )}
+        </Card>
+
+        {aiResponseHTML && (
+            <Card className="card ai-result-card">
+                <div dangerouslySetInnerHTML={{ __html: aiResponseHTML }} />
+            </Card>
+        )}
+
+       <Card
+          className="card notes-card"
+          style={{ display: notesVisible ? "block" : "none" }}
+        >
+          <h2>Your Notes for {topic}</h2>
+          <div className="notes-list">
+            {/* 🛑 FIX: Call the helper function to render notes, 
+                   instead of putting logic directly in JSX */}
+            {renderConsolidatedNotes(notes, topic, editNote, deleteNote)}
+          </div>
+        </Card>
+        
+        
+      </div> 
+    </div>
+  );
 }

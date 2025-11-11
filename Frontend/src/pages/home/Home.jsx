@@ -37,7 +37,7 @@ const features = [
     title: "Quiz Generator",
     desc: "Generate quizzes from your notes or any topic. Get instant AI feedback and track your performance.",
     badge: "📊 Performance Tracking",
-    link: "/quiz",
+    link: "/quizz",
   },
 ];
 

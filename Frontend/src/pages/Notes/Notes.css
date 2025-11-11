@@ -4,20 +4,10 @@
 /* page background + basic layout */
 .notes-page {
   min-height: 100vh;
-  background: var(--gradient-primary);
   font-family: var(--font-main);
 }
 
-/* blurred navbar */
-.navbar {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(8px);
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-}
+
 
 /* container centering */
 .container {
@@ -176,6 +166,66 @@ textarea {
   animation: spin 1s linear infinite;
   margin: 8px auto;
 }
+
+/* --- Note List Layout --- */
+.notes-list {
+    margin-top: 20px;
+}
+
+.note-item {
+    /* Aligns text and buttons side-by-side */
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start;
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    background-color: #fcfcfc;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Markdown Rendering Styles (AI Output) --- */
+.note-text {
+    /* Takes up most of the space */
+    flex-grow: 1; 
+    padding-right: 20px;
+    line-height: 1.6;
+    font-size: 0.95em;
+}
+
+/* Styles the headers generated from ### */
+.note-text h1, .note-text h2, .note-text h3 {
+    margin-top: 5px !important;
+    margin-bottom: 10px !important;
+    font-size: 1.25em; 
+    color: #007bff; /* Primary color */
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 4px;
+    font-weight: 600;
+}
+
+/* Styles the list items generated from * */
+.note-text ul, .note-text ol {
+    margin-top: 5px;
+    padding-left: 25px; /* Ensures list indentation */
+}
+
+/* Ensures bold text stands out */
+.note-text strong, .note-text b {
+    color: #333;
+    font-weight: 700;
+}
+
+/* --- Action Buttons Layout --- */
+.note-actions {
+    display: flex;
+    flex-direction: column; /* Stacks the Edit and Delete buttons vertically */
+    gap: 8px; /* Space between buttons */
+    flex-shrink: 0; /* Ensures buttons don't shrink when text is long */
+    min-width: 90px;
+}
+
 @keyframes spin { 0% { transform: rotate(0deg);} 100% { transform: rotate(360deg); } }
 
 /* responsive */
