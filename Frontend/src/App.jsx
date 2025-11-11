@@ -8,6 +8,7 @@ import Health from './pages/Health/Health'
 //import Search from './pages/Search/Seacrh'
 import Drive from './pages/Drive/Drive'
 import Layout from './components/Layout/Container/Layout';
+import Search from './pages/Search/Seacrh';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/notes" element={<Notes/>} />
           <Route path="/health" element={<Health/>} />
           <Route path="/drive" element={<Drive/>} />
+          <Route path='/search' element={<Search/>} />
         </Routes>
       </Layout>
    
