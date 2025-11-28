@@ -18,7 +18,7 @@ A comprehensive AI-powered web application designed specifically for students, f
 
 ## 👥 Development Team
 
-### **Safia Liaqat** - Frontend Developer (Under process as Safia will enhance fronet end by React)
+### **Safia Liaqat & Ume Habiba**  - Frontend Developer (Under process as Safia will enhance fronet end by React)
 - 🎨 **Responsible for**: Complete Frontend Architecture & UI/UX Design
 - ⚛️ **Tech Stack**: React.js, Modern CSS, Responsive Design
 - 💡 **Key Contributions**:
@@ -27,6 +27,8 @@ A comprehensive AI-powered web application designed specifically for students, f
   - Implemented responsive design for mobile/desktop
   - Created smooth animations and user interactions
   - Developed real-time AI response displays
+- 💼 GitHub: [@safialiaqat](https://github.com/UmeHabiba2416)
+- 🔗 LinkedIn: [Um e Habiba](https://www.linkedin.com/in/um-e-habiba-031b6a301/)
 - 💼 GitHub: [@safialiaqat](https://github.com/Safia-Liaqat)
 - 🔗 LinkedIn: [Safia Liaqat](https://www.linkedin.com/in/safia-liaqat-7a8082200)
 
